@@ -1,0 +1,25 @@
+// -*- mode: jsonc -*-
+{
+  "layer": "top",
+  "height": 32,
+  "modules-center": ["hyprland/workspaces", "clock", "custom/power"],
+
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "persistent-workspaces": {
+      "*": 5,
+    },
+  },
+
+  "clock": {
+    // "timezone": "America/New_York",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format": "{:%I:%M - %d/%m}",
+  },
+
+  "custom/power": {
+    "tooltip-format": "",
+    "on-click": "nwg-bar -i 112",
+    "format": "<label>",
+  },
+}
