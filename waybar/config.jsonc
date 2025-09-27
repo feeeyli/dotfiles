@@ -17,9 +17,9 @@
     "format": "{:%I:%M - %d/%m}",
   },
 
-  "custom/power": {
-    "tooltip-format": "",
-    "on-click": "nwg-bar -i 112",
-    "format": "<label>",
-  },
+  // "custom/power": {
+  //   "tooltip-format": "",
+  //   "on-click": "wlogout",
+  //   "format": "<label>",
+  // },
 }

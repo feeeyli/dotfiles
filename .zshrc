@@ -108,3 +108,32 @@ source /home/feyli/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-
 alias zshconfig="micro ~/.zshrc"
 alias ohmyzsh="micro ~/.oh-my-zsh"
 alias cls="clear"
+alias bx="bunx"
+alias zed="zeditor ."
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# pnpm
+export PNPM_HOME="/home/feyli/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# bun completions
+[ -s "/home/feyli/.bun/_bun" ] && source "/home/feyli/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# android studio
+export ANDROID_HOME="$HOME/Android/Sdk"
+export PATH="$PATH:$ANDROID_HOME/emulator"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
+
+# 
+export PATH="$PATH:$HOME/.cargo/bin"
