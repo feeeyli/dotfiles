@@ -1,7 +1,11 @@
-@define-color dark #333319;
+@define-color dark #000000;
+@define-color mid #c3c3c3;
+@define-color light #d8d8d8;
+/*@define-color dark #333319;
 @define-color mid #b4c7c0;
-@define-color light #e5ffff;
+@define-color light #e5ffff;*/
 
+@define-color hover #efefef;
 @define-color hover_1 #6dbbff;
 @define-color hover_2 #a96bff;
 @define-color hover_3 #ff4040;
@@ -51,7 +55,8 @@ window#waybar {
 }
 
 #workspaces button:hover {
-	background: #dcf3f3;
+	background: @hover;
+	/*background: #dcf3f3;*/
 }
 
 #workspaces button:nth-child(6n - 5).active {
