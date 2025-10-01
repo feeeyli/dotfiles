@@ -1,10 +1,6 @@
 @define-color dark #000000;
 @define-color mid #c3c3c3;
 @define-color light #d8d8d8;
-/*@define-color dark #333319;
-@define-color mid #b4c7c0;
-@define-color light #e5ffff;*/
-
 @define-color hover #efefef;
 @define-color hover_1 #6dbbff;
 @define-color hover_2 #a96bff;
@@ -12,23 +8,19 @@
 @define-color hover_4 #ffa043;
 @define-color hover_5 #ffe44f;
 @define-color hover_6 #6bff6b;
-
 * {
 	font-family: "JetBrains Mono Nerd Font", Roboto, Helvetica, Arial, sans-serif;
 	font-weight: 700;
 	color: @dark;
 }
-
 window#waybar {
 	background-color: transparent;
 }
-
 .modules-center {
     background-color: @mid;
 	border: 2px solid @dark;
 	border-top: 0;
 }
-
 #clock {
 	padding: 0 12px;
 	margin: 6px;
@@ -37,11 +29,9 @@ window#waybar {
 	border: 1px solid @dark;
 	box-shadow: 1px 1px @dark;
 }
-
 #workspaces {
 	padding: 6px 2px 6px 6px;
 }
-
 #workspaces button {
 	background-color: @light;
 	padding: 3px;
@@ -53,32 +43,25 @@ window#waybar {
 	box-shadow: 1px 1px @dark;
 	transition: all 150ms cubic-bezier(0.23, 1, 0.32, 1.05);
 }
-
 #workspaces button:hover {
 	background: @hover;
 	/*background: #dcf3f3;*/
 }
-
 #workspaces button:nth-child(6n - 5).active {
 	background-color: @hover_1;
 }
-
 #workspaces button:nth-child(6n - 4).active {
 	background-color: @hover_2;
 }
-
 #workspaces button:nth-child(6n - 3).active {
 	background-color: @hover_3;
 }
-
 #workspaces button:nth-child(6n - 2).active {
 	background-color: @hover_4;
 }
-
 #workspaces button:nth-child(6n - 1).active {
 	background-color: @hover_5;
 }
-
 #workspaces button:nth-child(6n).active {
 	background-color: @hover_6;
 }
