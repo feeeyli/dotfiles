@@ -102,6 +102,7 @@
     nautilus
     kitty
     rofi-power-menu
+    gh
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
