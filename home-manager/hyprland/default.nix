@@ -17,8 +17,10 @@
       "$terminal" = "kitty";
       "$fileManager" = "nautilus";
       "$menu" = "rofi -show drun";
+      "$unmute" = "amixer -c 1 sset \"Auto-Mute Mode\" Disabled & amixer -c 1 sset Front unmute";
 
       exec-once = [
+        "$unmute"
         "waybar & vivaldi"
         "systemctl --user start hyprpolkitagent"
         "swww-daemon & swww img ~/dotfiles/images/wallpaper.png"

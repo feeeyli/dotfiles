@@ -5,6 +5,8 @@
     "$mainMod" = "SUPER";
 
     "$powerMenu" = "rofi -show p -modi p:'rofi-power-menu --symbols-font \"Symbols Nerd Font Mono\" --choices=shutdown/reboot' -font \"JetBrains Mono NF 16\" -theme Paper -theme-str 'window {width: 8em;} listview {lines: 2;}'";
+    "$printArea" = "grim -g \"$(slurp)\" - | magick - -shave 1x1 PNG:- | wl-copy";
+    "$printScreen" = "grim - | wl-copy";
 
     bind = [
       "$mainMod, Q, exec, $terminal"
@@ -20,7 +22,7 @@
       "$mainMod, F, setfloating,"
       "$mainMod, F, centerwindow,"
 
-      "$mainMod, K, exec, amixer -c 2 sset Front unmute"
+      "$mainMod, K, exec, $unmute"
       "$mainMod, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
       "$mainMod, M, exec, $powerMenu"
       
@@ -54,7 +56,8 @@
       "$mainMod CONTROL, left, workspace, -1"
       "$mainMod CONTROL, right, workspace, +1"
       
-      "$shiftMod, PRINT, exec, hyprshot -m region"
+      ", PRINT, exec, $printArea"
+      "SHIFT, PRINT, exec, $printScreen"
 
       "$mainMod, Escape, exec, pkill waybar && waybar"
       "$mainMod SHIFT, A, exec, kitty flatpak update --noninteractive"

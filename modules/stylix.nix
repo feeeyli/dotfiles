@@ -5,6 +5,25 @@
 
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine-dawn.yaml";
 
+  # stylix.base16Scheme = {
+  #   base00 = "#d8d8d8";
+  #   base01 = "#9893a5";
+  #   base02 = "#9893a5";
+  #   base03 = "#6c6c6c";
+  #   base04 = "#ececec";
+  #   base05 = "#000000";
+  #   base06 = "#575279";
+  #   base07 = "#575279";
+  #   base08 = "#ff4040";
+  #   base09 = "#ffa043";
+  #   base0A = "#ffa043";
+  #   base0B = "#2ea62e";
+  #   base0C = "#77baac";
+  #   base0D = "#6dbbff";
+  #   base0E = "#a96bff";
+  #   base0F = "#eb5c2d";
+  # };
+
   stylix.cursor = {
     package = pkgs.rose-pine-cursor;
     name = "BreezeX-RosePineDawn-Linux";

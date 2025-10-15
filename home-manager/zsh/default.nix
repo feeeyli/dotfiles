@@ -56,6 +56,10 @@
 
       #
       export PATH="$PATH:$HOME/.cargo/bin"
+
+      [[ "$(tty)" == /dev/tty1 ]] && Hyprland
+
+      ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
     '';
   };
 }

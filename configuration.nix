@@ -2,13 +2,14 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./modules/stylix.nix
+      # ./modules/neovim
     ];
 
   security.polkit.enable = true;
@@ -71,13 +72,24 @@
   services.gvfs.enable = true;
   services.udisks2.enable = true;
 
+  services.flatpak.enable = true;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   programs = {
   	hyprland.enable = true;
-  	git.enable = true;
+  	git = {
+      enable = true;
+      config = {
+        user = {
+          name = "feeeyli";
+          email = "lunafeyli@gmail.com";
+        }; 
+      };
+    };
     zsh.enable = true;
+    steam.enable = true;
   };
 
   # List packages installed in system profile. To search, run:
@@ -103,6 +115,21 @@
     kitty
     rofi-power-menu
     gh
+    neovim
+    lunarvim
+    nodejs_24
+    prismlauncher
+    gedit
+    alsa-utils
+    yazi
+    helix
+    slurp
+    grim
+    wl-clipboard
+    mcpelauncher-ui-qt
+    mcpelauncher-client
+    pastel
+    bun
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

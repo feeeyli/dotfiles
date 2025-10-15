@@ -9,8 +9,9 @@
 @define-color hover_5 #ffe44f;
 @define-color hover_6 #6bff6b;
 * {
-	font-family: "JetBrains Mono Nerd Font", Roboto, Helvetica, Arial, sans-serif;
+	font-family: "Noto Serif", Roboto, Helvetica, Arial, sans-serif;
 	font-weight: 700;
+	font-size: 14px;
 	color: @dark;
 }
 window#waybar {
