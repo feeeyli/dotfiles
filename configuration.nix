@@ -95,41 +95,37 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    micro
-    waybar
-    rofi
-    vivaldi
-    dunst
-    zed-editor
-    stow
-    nemo
-    swww
-    vscode
-    hyprpolkitagent
-    hyfetch
+    # pastel
+    # tree
+    # waybar
+    # dunst
+    # hyfetch
+    # kitty
+    alsa-utils
+    android-studio
+    bun
     fastfetch
-    tree
-    nix-output-monitor
-    nil
-    nautilus
-    kitty
-    rofi-power-menu
+    gedit
     gh
-    neovim
-    lunarvim
+    grim
+    helix
+    hyprpicker
+    hyprpolkitagent
+    micro
+    nautilus
+    nemo
+    nil
+    nix-output-monitor
     nodejs_24
     prismlauncher
-    gedit
-    alsa-utils
-    yazi
-    helix
+    rofi-power-menu
     slurp
-    grim
+    stow
+    swww
+    vivaldi
     wl-clipboard
-    mcpelauncher-ui-qt
-    mcpelauncher-client
-    pastel
-    bun
+    yazi
+    pipx
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

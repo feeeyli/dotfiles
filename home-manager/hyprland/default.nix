@@ -16,7 +16,7 @@
 
       "$terminal" = "kitty";
       "$fileManager" = "nautilus";
-      "$menu" = "rofi -show drun";
+      "$menu" = "rofi -show drun -modes \"drun,calc\"";
       "$unmute" = "amixer -c 1 sset \"Auto-Mute Mode\" Disabled & amixer -c 1 sset Front unmute";
 
       exec-once = [
@@ -140,6 +140,8 @@
 
           numlock_by_default = true;
       };
+
+      layerrule = ["noanim, selection"];
     };
   };
 }

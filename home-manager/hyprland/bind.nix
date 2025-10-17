@@ -5,13 +5,15 @@
     "$mainMod" = "SUPER";
 
     "$powerMenu" = "rofi -show p -modi p:'rofi-power-menu --symbols-font \"Symbols Nerd Font Mono\" --choices=shutdown/reboot' -font \"JetBrains Mono NF 16\" -theme Paper -theme-str 'window {width: 8em;} listview {lines: 2;}'";
-    "$printArea" = "grim -g \"$(slurp)\" - | magick - -shave 1x1 PNG:- | wl-copy";
-    "$printScreen" = "grim - | wl-copy";
+    "$printArea" = "(grim -g \"$(slurp)\" - | wl-copy); dunstify \"Print (área) copiada para a área de transferência\"";
+    "$printScreen" = "(grim - | wl-copy); dunstify \"Print (tela) copiada para a área de transferência\"";
+    "$pickColor" = "(hyprpicker | wl-copy); dunstify \"Cor copiada para a área de transferência\"";
 
     bind = [
       "$mainMod, Q, exec, $terminal"
       "$mainMod, E, exec, $fileManager"
       "$mainMod, SPACE, exec, $menu"
+      "$mainMod, C, exec, rofi -show calc -modi calc -no-show-match -no-sort"
 
       "$mainMod, W, killactive,"
       "$mainMod, J, togglefloating,"
@@ -58,6 +60,7 @@
       
       ", PRINT, exec, $printArea"
       "SHIFT, PRINT, exec, $printScreen"
+      "$mainMod SHIFT, P, exec, $pickColor"
 
       "$mainMod, Escape, exec, pkill waybar && waybar"
       "$mainMod SHIFT, A, exec, kitty flatpak update --noninteractive"

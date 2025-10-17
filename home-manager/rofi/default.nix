@@ -14,6 +14,10 @@ in
 
     terminal = "kitty";
 
-    theme = ./theme.rasi;
+    plugins = with pkgs; [
+      rofi-calc
+    ];
+
+    theme = ./feyli.rasi;
   };
 }
