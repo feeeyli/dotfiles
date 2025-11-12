@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
 
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,33 +21,61 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, nvf, nix-flatpak, ... }: {
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      stylix,
+      nvf,
+      nix-flatpak,
+      nixpkgs-unstable,
+      ...
+    }@inputs:
+    let
+      pkgs-unstable = import nixpkgs-unstable {
+        system = "x86_64-linux";
+        config.allowUnfree = true;
+      };
+    in
+    {
 
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        nix-flatpak.nixosModules.nix-flatpak
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          nix-flatpak.nixosModules.nix-flatpak
 
-        nvf.nixosModules.default
+          nvf.nixosModules.default
 
-        stylix.nixosModules.stylix
+          stylix.nixosModules.stylix
 
-        ./configuration.nix
-        ./modules/flatpak.nix
+          ./configuration.nix
+          ./modules/flatpak.nix
 
-        home-manager.nixosModules.home-manager {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
 
-          home-manager.users.feyli = import ./home-manager/home.nix;
+            home-manager.extraSpecialArgs = {
+              inherit inputs;
+              inherit pkgs-unstable;
+            };
 
-          home-manager.backupFileExtension = "hm-backup";
-        }
-      ];
+            home-manager.users.feyli = import ./home-manager/home.nix;
+
+            home-manager.backupFileExtension = "hm-backup";
+          }
+        ];
+      };
+
     };
-
-  };
 }

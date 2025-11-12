@@ -21,7 +21,7 @@
 
       exec-once = [
         "$unmute"
-        "waybar & vivaldi"
+        "waybar & firefox"
         "systemctl --user start hyprpolkitagent"
         "swww-daemon & swww img ~/dotfiles/images/wallpaper.png"
       ];
@@ -65,23 +65,23 @@
         inactive_opacity = 1.0;
 
         shadow = {
-            enabled = true;
-            range = 2;
-            render_power = 5;
-            sharp = false;
-            color = lib.mkForce "rgb(000000)";
-            color_inactive = lib.mkForce "rgba(c3c3c300)";
-            ignore_window = true;
-            offset = "2 2";
-            scale = 1;
+          enabled = true;
+          range = 2;
+          render_power = 5;
+          sharp = false;
+          color = lib.mkForce "rgb(000000)";
+          color_inactive = lib.mkForce "rgba(c3c3c300)";
+          ignore_window = true;
+          offset = "2 2";
+          scale = 1;
         };
-        
-        blur = {
-            enabled = true;
-            size = 3;
-            passes = 1;
 
-            vibrancy = 0.1696;
+        blur = {
+          enabled = true;
+          size = 3;
+          passes = 1;
+
+          vibrancy = 0.1696;
         };
       };
 
@@ -129,19 +129,20 @@
       misc = {
         force_default_wallpaper = -1;
         disable_hyprland_logo = true;
+        middle_click_paste = false;
       };
 
       input = {
-          kb_layout = "br";
+        kb_layout = "br";
 
-          follow_mouse = 1;
+        follow_mouse = 1;
 
-          sensitivity = 0;
+        sensitivity = 0;
 
-          numlock_by_default = true;
+        numlock_by_default = true;
       };
 
-      layerrule = ["noanim, selection"];
+      layerrule = [ "noanim, selection" ];
     };
   };
 }

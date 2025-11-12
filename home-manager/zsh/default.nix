@@ -22,7 +22,6 @@
       ohmyzsh = "micro ~/.oh-my-zsh";
       cls = "clear";
       bx = "bunx";
-      zed = "zeditor .";
 
       spacesniffer = "du -sh */ -t 100M | sort -hr";
       spacesnifferhidden = "du -sh -- * .*/ -t 100M 2>/dev/null | sort -hr";

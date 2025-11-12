@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -10,140 +10,35 @@
     ./dunst
     ./vscode
     ./rofi
-    # ./neovim
+    ./firefox
+    ./zed-editor
+    ./obsidian
+    ./xdg
   ];
 
   home.username = "feyli";
   home.homeDirectory = "/home/feyli";
 
-  # linka o arquivo de configuração no diretório atual para o local especificado no diretório home
-  # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
+  home.packages = [
 
-  # linka todos os arquivos em `./scripts` para `~/.config/i3/scripts`
-  # home.file.".config/i3/scripts" = {
-  #   source = ./scripts;
-  #   recursive = true;    # linka recursivamente
-  #   executable = true;   # torna todos os arquivos executáveis
-  # };
-
-  # codifica o conteúdo do arquivo diretamente no arquivo de configuração nix
-  # home.file.".xxx".text = ''
-  #    xxx
-  # '';
-
-  # define o tamanho do cursor e dpi para monitor 4k
-  # xresources.properties = {
-  #   "Xcursor.size" = 16;
-  #   # "Xft.dpi" = 172;
-  # };
-
-  # Pacotes que devem ser instalados para o perfil do usuário.
-  home.packages = with pkgs; [
-    
   ];
 
-  # configuração básica do git, por favor, mude para a sua
   programs = {
     git = {
       enable = true;
       userName = "feeeyli";
       userEmail = "lunafeyli@gmail.com";
     };
-#    gh = {
-#      enable = true;
-#      gitCredentialHelper = {
-#        enable = true;
-#      };
-#    };
-    helix = {
+    gh = {
       enable = true;
-      settings = {
-        # theme = lib.mkForce "rose_pine";
-        editor = {
-          cursor-shape = {
-            insert = "bar";
-          };
-        };
-        keys.normal = {
-          C-y = [
-            ":sh rm -f /tmp/unique-file"
-            ":insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file"
-            ":insert-output echo \"\x1b[?1049h\x1b[?2004h\" > /dev/tty"
-            ":open %sh{cat /tmp/unique-file}"
-            ":redraw"
-          ];
-        };
+      gitCredentialHelper = {
+        enable = true;
       };
     };
-    # neovim = {
-    #   enable = true;
-    #   # extraConfig = lib.fileContents ./nvim/init.lua;
-    # };
-    beets = {
+    mpv = {
       enable = true;
-      settings = {
-        enable = true;
-        package = pkgs.beets-unstable;
-        settings = {
-          directory = "~/music";
-          library = "~/music/musiclibrary.db";
-          plugins = [
-            "spotify"
-            "info"
-            "fetchart"
-            "lyrics"
-            "lastgenre"
-            "id3extract"
-            "duplicates"
-            "fromfilename"
-            "mbsync"
-          ];
-
-          import = {
-            move = false;
-            copy = true;
-          };
-
-          spotify = {
-            source_weight = 0;
-            mode = "open";
-            region_filter = "US";
-            show_failures = "on";
-            tiebreak = "first";
-          };
-
-          ignored = ["missing_tracks" "track_length" "unmatched_tracks" "track_index"];
-
-          musicbrainz = {
-            enabled = true;
-            host = "musicbrainz.org";
-            https = false;
-            ratelimit = 1;
-            ratelimit_interval = 1;
-            searchlimit = 5;
-            extra_tags = [];
-            genres = true;
-            external_ids = {
-              discogs = true;
-              bandcamp = true;
-              spotify = true;
-              deezer = true;
-              beatport = true;
-              tidal = true;
-              youtube = true;
-            };
-          };
-          
-          id3extract = {
-            mappings = {
-              WOAS = "spotify_track_id";
-            };
-          };
-        };
-      };
     };
   };
-
 
   gtk = {
     enable = true;
@@ -153,57 +48,5 @@
     };
   };
 
-  xdg.desktopEntries = {
-    kitty = {
-      noDisplay = true;
-      name = "kitty";
-    };
-    kvantummanager = {
-      noDisplay = true;
-      name = "kvantummanager";
-    };
-    qt5ct = {
-      noDisplay = true;
-      name = "qt5ct";
-    };
-    qt6ct = {
-      noDisplay = true;
-      name = "qt6ct";
-    };
-    rofi = {
-      noDisplay = true;
-      name = "rofi";
-    };
-    rofi-theme-selector = {
-      noDisplay = true;
-      name = "rofi-theme-selector";
-    };
-    nixos-help = {
-      noDisplay = true;
-      name = "nixos-help";
-    };
-    nvim = {
-      noDisplay = true;
-      name = "nvim";
-    };
-    micro = {
-      noDisplay = true;
-      name = "micro";
-    };
-    nemo = {
-      noDisplay = true;
-      name = "nemo";
-    };
-  };
-
-  
-  # Este valor determina com qual release do Home Manager sua
-  # configuração é compatível. Isso ajuda a evitar quebras
-  # quando um novo release do Home Manager introduz
-  # mudanças incompatíveis com versões anteriores.
-  #
-  # Você pode atualizar o Home Manager sem alterar este valor. Veja
-  # as notas de lançamento do Home Manager para uma lista de alterações
-  # na versão de estado em cada release.
   home.stateVersion = "25.05";
 }

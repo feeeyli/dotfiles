@@ -1,39 +1,27 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./modules/stylix.nix
-      # ./modules/neovim
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    ./modules/stylix.nix
+  ];
 
   security.polkit.enable = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
-  # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.hostName = "nixos";
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "pt_BR.UTF-8";
 
   i18n.extraLocaleSettings = {
@@ -48,25 +36,24 @@
     LC_TIME = "pt_BR.UTF-8";
   };
 
-  # Configure keymap in X11
   services.xserver.xkb = {
     layout = "br";
     variant = "";
   };
 
-  # Configure console keymap
   console.keyMap = "br-abnt2";
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.feyli = {
     isNormalUser = true;
     description = "feyli";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    packages = [ ];
     shell = pkgs.zsh;
   };
 
-  # Enable automatic login for the user.
   services.getty.autologinUser = "feyli";
 
   services.gvfs.enable = true;
@@ -74,85 +61,53 @@
 
   services.flatpak.enable = true;
 
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   programs = {
-  	hyprland.enable = true;
-  	git = {
-      enable = true;
-      config = {
-        user = {
-          name = "feeeyli";
-          email = "lunafeyli@gmail.com";
-        }; 
-      };
-    };
+    hyprland.enable = true;
     zsh.enable = true;
     steam.enable = true;
+    adb.enable = true;
+    nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep 3";
+      flake = "/home/feyli/dotfiles";
+    };
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # pastel
-    # tree
-    # waybar
-    # dunst
-    # hyfetch
-    # kitty
     alsa-utils
     android-studio
     bun
     fastfetch
+    gdu
     gedit
     gh
+    git
     grim
-    helix
     hyprpicker
     hyprpolkitagent
+    libresprite
     micro
     nautilus
     nemo
     nil
     nix-output-monitor
+    nixd
+    nixfmt-rfc-style
     nodejs_24
+    obs-studio
+    obsidian
     prismlauncher
-    rofi-power-menu
+    qbittorrent
+    qview
     slurp
-    stow
     swww
-    vivaldi
+    wine
     wl-clipboard
     yazi
-    pipx
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05"; # Did you read the comment?
-
+  system.stateVersion = "25.05";
 }
