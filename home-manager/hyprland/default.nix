@@ -1,4 +1,9 @@
-{ lib, ... }:
+{
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -9,8 +14,13 @@
   wayland.windowManager.hyprland = {
     enable = true;
 
-    package = null;
-    portalPackage = null;
+    plugins = [
+      inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprscrolling
+    ];
+
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage =
+      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     settings = {
       monitor = ",preferred,auto,auto";
 
@@ -21,9 +31,10 @@
 
       exec-once = [
         "$unmute"
-        "waybar & firefox"
+        "qs & firefox"
+        # "waybar & firefox"
         "systemctl --user start hyprpolkitagent"
-        "swww-daemon & swww img ~/dotfiles/images/wallpaper.png"
+        # "swww-daemon & swww img ~/dotfiles/images/wallpaper.png"
       ];
 
       env = [
@@ -55,7 +66,16 @@
 
         allow_tearing = false;
 
-        layout = "dwindle";
+        layout = "scrolling";
+        # layout = "dwindle";
+      };
+
+      plugin.hyprscrolling = {
+        focus_fit_method = 1;
+        follow_focus = false;
+        fullscreen_on_one_column = true;
+        # column_width = if !box.isLaptop or false then 0.333 else 0.5;
+        # explicit_column_widths = "0.333, 0.5, 0.667, 0.8, 1.0";
       };
 
       decoration = {
@@ -111,16 +131,16 @@
           "layersOut, 1, 1.5, linear, fade"
           "fadeLayersIn, 1, 1.79, almostLinear"
           "fadeLayersOut, 1, 1.39, almostLinear"
-          "workspaces, 1, 2.75, bounce"
-          "workspacesIn, 1, 2.75, bounce"
-          "workspacesOut, 1, 2.75, bounce"
+          "workspaces, 1, 2.75, bounce, slidevert"
+          "workspacesIn, 1, 2.75, bounce, slidevert"
+          "workspacesOut, 1, 2.75, bounce, slidevert"
         ];
       };
 
-      dwindle = {
-        pseudotile = true;
-        preserve_split = true;
-      };
+      # dwindle = {
+      #   pseudotile = true;
+      #   preserve_split = true;
+      # };
 
       master = {
         new_status = "master";

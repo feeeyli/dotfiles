@@ -15,6 +15,7 @@
       "svelte"
       "biome"
       "astro"
+      "qml"
     ];
 
     userSettings = {
@@ -35,7 +36,16 @@
         auto_fold_dirs = false;
       };
       theme = "Rosé Pine";
-      # helix_mode = true;
+      lsp = {
+        qml = {
+          binary = {
+            arguments = [
+              "-E"
+              "additional-args"
+            ];
+          };
+        };
+      };
     };
   };
 }

@@ -4,9 +4,12 @@
   wayland.windowManager.hyprland.settings = {
     "$mainMod" = "SUPER";
 
-    "$powerMenu" = "rofi -show p -modi p:'rofi-power-menu --symbols-font \"Symbols Nerd Font Mono\" --choices=shutdown/reboot' -font \"JetBrains Mono NF 16\" -theme Paper -theme-str 'window {width: 8em;} listview {lines: 2;}'";
-    "$printArea" = "(grim -g \"$(slurp)\" - | wl-copy); dunstify \"Print (área) copiada para a área de transferência\"";
-    "$printScreen" = "(grim - | wl-copy); dunstify \"Print (tela) copiada para a área de transferência\"";
+    "$powerMenu" =
+      "rofi -show p -modi p:'rofi-power-menu --symbols-font \"Symbols Nerd Font Mono\" --choices=shutdown/reboot' -font \"JetBrains Mono NF 16\" -theme Paper -theme-str 'window {width: 8em;} listview {lines: 2;}'";
+    "$printArea" =
+      "(grim -g \"$(slurp)\" - | wl-copy); dunstify \"Print (área) copiada para a área de transferência\"";
+    "$printScreen" =
+      "(grim - | wl-copy); dunstify \"Print (tela) copiada para a área de transferência\"";
     "$pickColor" = "(hyprpicker | wl-copy); dunstify \"Cor copiada para a área de transferência\"";
 
     bind = [
@@ -19,7 +22,7 @@
       "$mainMod, J, togglefloating,"
       "$mainMod, P, pseudo,"
       "$mainMod, ALT_L, togglesplit,"
-      
+
       "$mainMod, F, resizeactive, exact 1440 810"
       "$mainMod, F, setfloating,"
       "$mainMod, F, centerwindow,"
@@ -27,11 +30,17 @@
       "$mainMod, K, exec, $unmute"
       "$mainMod, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
       "$mainMod, M, exec, $powerMenu"
-      
-      "$mainMod, left, movefocus, l"
-      "$mainMod, right, movefocus, r"
-      "$mainMod, up, movefocus, u"
-      "$mainMod, down, movefocus, d"
+
+      "$mainMod, left, layoutmsg, focus l"
+      "$mainMod, right, layoutmsg, focus r"
+      "$mainMod, page_up, layoutmsg, focus u"
+      "$mainMod, page_down, layoutmsg, focus d"
+
+      "$mainMod, L, layoutmsg, fit active"
+
+      "$mainMod, KP_Add, layoutmsg, colresize +0.1"
+      "$mainMod, KP_Subtract, layoutmsg, colresize -0.1"
+      "$mainMod, equal, layoutmsg, colresize -conf"
 
       "$mainMod, 1, workspace, 1"
       "$mainMod, 2, workspace, 2"
@@ -55,9 +64,12 @@
       "$mainMod SHIFT, 9, movetoworkspace, 9"
       "$mainMod SHIFT, 0, movetoworkspace, 10"
 
-      "$mainMod CONTROL, left, workspace, -1"
-      "$mainMod CONTROL, right, workspace, +1"
-      
+      "$mainMod, up, workspace, -1"
+      "$mainMod, down, workspace, +1"
+
+      "$mainMod SHIFT, left, layoutmsg, swapcol l"
+      "$mainMod SHIFT, right, layoutmsg, swapcol r"
+
       ", PRINT, exec, $printArea"
       "SHIFT, PRINT, exec, $printScreen"
       "$mainMod SHIFT, P, exec, $pickColor"

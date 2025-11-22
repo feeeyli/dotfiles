@@ -63,6 +63,8 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  virtualisation.docker.enable = true;
+
   programs = {
     hyprland.enable = true;
     zsh.enable = true;
@@ -103,10 +105,12 @@
     qbittorrent
     qview
     slurp
-    swww
     wine
     wl-clipboard
     yazi
+    kdePackages.qtdeclarative
+    mpvpaper
+    distrobox
   ];
 
   system.stateVersion = "25.05";

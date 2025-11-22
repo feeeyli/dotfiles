@@ -14,6 +14,8 @@
     ./zed-editor
     ./obsidian
     ./xdg
+    ./quickshell
+    ./cava
   ];
 
   home.username = "feyli";

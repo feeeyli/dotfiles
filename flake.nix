@@ -27,6 +27,19 @@
     };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprland.url = "github:hyprwm/Hyprland";
+
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
   };
 
   outputs =
@@ -38,6 +51,7 @@
       nvf,
       nix-flatpak,
       nixpkgs-unstable,
+      quickshell,
       ...
     }@inputs:
     let
@@ -74,6 +88,24 @@
 
             home-manager.backupFileExtension = "hm-backup";
           }
+
+          (
+            { pkgs, ... }:
+            {
+              environment.systemPackages = [
+                (quickshell.packages.${pkgs.system}.default.override {
+                  withJemalloc = true;
+                  withQtSvg = true;
+                  withWayland = true;
+                  withX11 = false;
+                  withPipewire = true;
+                  withPam = true;
+                  withHyprland = true;
+                  withI3 = false;
+                })
+              ];
+            }
+          )
         ];
       };
 
