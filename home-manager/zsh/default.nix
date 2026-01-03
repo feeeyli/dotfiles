@@ -6,7 +6,7 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     oh-my-zsh = {
-      enable = true;
+      # enable = true;
       theme = "fwalch";
       plugins = [
         "git"
@@ -27,6 +27,8 @@
       spacesnifferhidden = "du -sh -- * .*/ -t 100M 2>/dev/null | sort -hr";
 
       rebuild = "sudo nixos-rebuild switch --flake ~/dotfiles";
+
+      nodeflake = "cp ~/www/example_node_flake.nix flake.nix";
     };
     envExtra = ''
       export NVM_DIR="$HOME/.nvm"
@@ -56,9 +58,11 @@
       #
       export PATH="$PATH:$HOME/.cargo/bin"
 
-      [[ "$(tty)" == /dev/tty1 ]] && Hyprland
+      [[ "$(tty)" == /dev/tty1 ]] && niri
 
       ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
+
+      eval "$(oh-my-posh init zsh --config ~/dotfiles/home-manager/zsh/oh-my-posh.toml)"
     '';
   };
 }

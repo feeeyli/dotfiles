@@ -22,16 +22,22 @@
     portalPackage =
       inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     settings = {
-      monitor = ",preferred,auto,auto";
+      monitor = [
+        ",preferred,auto,auto"
+        "HDMI-A-1, 1920x1080@60, 0x0, 1"
+      ];
 
       "$terminal" = "kitty";
-      "$fileManager" = "nautilus";
+      "$fileManager" = "kitty yazi";
       "$menu" = "rofi -show drun -modes \"drun,calc\"";
       "$unmute" = "amixer -c 1 sset \"Auto-Mute Mode\" Disabled & amixer -c 1 sset Front unmute";
 
       exec-once = [
         "$unmute"
-        "qs & firefox"
+        "mpvpaper -o \"--panscan=1 --window-maximized=yes --loop-file\" all ~/wallpaper.mp4"
+        "qs"
+        "firefox"
+        # "kitty labwc"
         # "waybar & firefox"
         "systemctl --user start hyprpolkitagent"
         # "swww-daemon & swww img ~/dotfiles/images/wallpaper.png"
@@ -54,13 +60,13 @@
       ];
 
       general = {
-        gaps_in = 5;
-        gaps_out = 8;
+        gaps_in = 6;
+        gaps_out = 4;
 
         border_size = 2;
 
-        "col.active_border" = lib.mkForce "rgb(000000)";
-        "col.inactive_border" = lib.mkForce "rgb(c3c3c3)";
+        "col.active_border" = lib.mkForce "rgb(D20D1B)";
+        "col.inactive_border" = lib.mkForce "rgb(100000)";
 
         resize_on_border = false;
 
@@ -74,7 +80,7 @@
         focus_fit_method = 1;
         follow_focus = false;
         fullscreen_on_one_column = true;
-        # column_width = if !box.isLaptop or false then 0.333 else 0.5;
+        column_width = 1;
         # explicit_column_widths = "0.333, 0.5, 0.667, 0.8, 1.0";
       };
 

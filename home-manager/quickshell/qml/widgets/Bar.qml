@@ -10,24 +10,24 @@ PanelWindow {
 
     anchors {
         left: true
-        bottom: true
         top: true
+        right: true
     }
 
     margins {
         left: 4
-        bottom: 4
         top: 4
+        right: 4
     }
 
-    implicitWidth: 40
+    implicitHeight: 40
 
     color: "transparent"
 
-    ColumnLayout {
+    RowLayout {
         anchors.fill: parent
-        anchors.topMargin: 12
-        anchors.bottomMargin: 12
+        anchors.leftMargin: 12
+        anchors.rightMargin: 12
 
         Rectangle {
             Layout.preferredHeight: 40
@@ -49,11 +49,29 @@ PanelWindow {
 
         Workspaces {}
 
-        ColumnLayout {
+        Rectangle {
+            Layout.preferredHeight: 40
+            Layout.preferredWidth: 40
+            anchors.centerIn: parent
+            color: "transparent"
+
+            Icon {
+                anchors.centerIn: parent
+                name: "sangue"
+                size: 24
+            }
+
+            // onClicked: {
+            //     ThemeManager.cycleThemes();
+            // }
+            GradientMouseArea {}
+        }
+
+        RowLayout {
             spacing: 0
 
-            Layout.preferredWidth: 40
-            Layout.alignment: Qt.AlignBottom
+            Layout.preferredHeight: 40
+            Layout.alignment: Qt.AlignRight
 
             Clock {}
 

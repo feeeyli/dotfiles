@@ -2,22 +2,17 @@
   description = "A very basic flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
 
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     stylix = {
-      url = "github:nix-community/stylix/release-25.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nvf = {
-      url = "github:notashelf/nvf";
+      url = "github:nix-community/stylix/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -34,11 +29,26 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "github:hyprwm/hyprland/v0.52.1-b";
 
     hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
+      url = "github:hyprwm/hyprland-plugins/v0.52.0";
       inputs.hyprland.follows = "hyprland";
+    };
+
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs = {
+        # IMPORTANT: we're using "libgbm" and is only available in unstable so ensure
+        # to have it up-to-date or simply don't specify the nixpkgs input
+        nixpkgs.follows = "nixpkgs-unstable";
+        home-manager.follows = "home-manager";
+      };
+    };
+
+    nvf = {
+      url = "github:NotAShelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -48,7 +58,6 @@
       nixpkgs,
       home-manager,
       stylix,
-      nvf,
       nix-flatpak,
       nixpkgs-unstable,
       quickshell,
@@ -66,8 +75,6 @@
         system = "x86_64-linux";
         modules = [
           nix-flatpak.nixosModules.nix-flatpak
-
-          nvf.nixosModules.default
 
           stylix.nixosModules.stylix
 
@@ -93,7 +100,7 @@
             { pkgs, ... }:
             {
               environment.systemPackages = [
-                (quickshell.packages.${pkgs.system}.default.override {
+                (quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
                   withJemalloc = true;
                   withQtSvg = true;
                   withWayland = true;

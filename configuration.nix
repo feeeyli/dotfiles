@@ -1,5 +1,4 @@
 { pkgs, ... }:
-
 {
   imports = [
     ./hardware-configuration.nix
@@ -15,6 +14,28 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  services.xserver.enable = true;
+  services.xserver.windowManager.openbox = {
+    enable = true;
+  };
+
+  services.xserver.displayManager.startx.enable = true;
+
+  #  services.displayManager.autoLogin.enable = true;
+  #  services.displayManager.autoLogin.user = "feyli";
+
+  #  services.displayManager.defaultSession = "none+openbox";
+
+  #  services.displayManager.sddm = {
+  #    enable = true;
+  #    settings = {
+  #      Autologin = {
+  #        Session = "openbox.desktop";
+  #        User = "feyli";
+  #      };
+  #    };
+  #  };
 
   networking.hostName = "nixos";
 
@@ -49,6 +70,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "docker"
     ];
     packages = [ ];
     shell = pkgs.zsh;
@@ -67,6 +89,7 @@
 
   programs = {
     hyprland.enable = true;
+    niri.enable = true;
     zsh.enable = true;
     steam.enable = true;
     adb.enable = true;
@@ -91,7 +114,6 @@
     hyprpicker
     hyprpolkitagent
     libresprite
-    micro
     nautilus
     nemo
     nil
@@ -107,11 +129,32 @@
     slurp
     wine
     wl-clipboard
-    yazi
     kdePackages.qtdeclarative
+    ffmpeg
     mpvpaper
     distrobox
+    tree
+    pavucontrol
+    flex-launcher
+    feh
+    xorg.xhost
+    xorg.xinit
+    scrcpy
+    uwu-colors
+    helix
+    oh-my-posh
+    wget
+    vesktop
   ];
+
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [
+      5173
+      8000
+      3000
+    ];
+  };
 
   system.stateVersion = "25.05";
 }

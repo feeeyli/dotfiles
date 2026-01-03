@@ -9,8 +9,8 @@ Item {
 
     property var visualizerBars: []
 
-    implicitHeight: bars.height + 24
-    implicitWidth: 40
+    implicitWidth: bars.width + 24
+    implicitHeight: 40
 
     Component.onCompleted: {
         let bars = [];
@@ -78,7 +78,7 @@ Item {
         }
     }
 
-    Column {
+    Row {
         id: bars
         anchors {
             centerIn: parent
@@ -87,18 +87,18 @@ Item {
             // leftMargin: 10
             // rightMargin: 10
         }
-        width: 20
+        height: 20
         spacing: 3
 
         Repeater {
             model: cava.visualizerBars
 
             Rectangle {
-                width: 20 * modelData
-                height: 4
+                height: 20 * modelData
+                width: 4
                 // width: (parent.width - (49 * parent.spacing)) / 50
                 // height: parent.height * modelData
-                anchors.left: parent.left
+                anchors.bottom: parent.bottom
 
                 color: ThemeManager.colors.primary()
                 // opacity: cava.isPlaying ? 1 : 0.15
@@ -121,11 +121,11 @@ Item {
 
     GradientMouseArea {
         onClicked: {
-            musicPlayer.toggleOpen();
+            musicPlayerPanel.toggleOpen(cava.mapToGlobal(cava.width, 0).x);
         }
     }
 
-    MusicPlayer {
-        id: musicPlayer
-    }
+    // MusicPlayer {
+    //     id: musicPlayer
+    // }
 }

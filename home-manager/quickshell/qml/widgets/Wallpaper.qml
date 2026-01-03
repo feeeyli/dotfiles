@@ -29,20 +29,5 @@ PanelWindow {
         sourceSize: undefined
         anchors.fill: parent
         fillMode: Image.PreserveAspectCrop
-        // onStatusChanged: {
-        //     if (status === Image.Error) {
-        //     Logger.w("Current wallpaper failed to load:", source)
-        //     } else if (status === Image.Ready && !dimensionsCalculated) {
-        //     dimensionsCalculated = true
-        //     const optimalSize = calculateOptimalWallpaperSize(implicitWidth, implicitHeight)
-        //     if (optimalSize !== false) {
-        //         sourceSize = optimalSize
-        //     }
-        //     }
-        // }
-        // onSourceChanged: {
-        //     dimensionsCalculated = false
-        //     sourceSize = undefined
-        // }
     }
 }

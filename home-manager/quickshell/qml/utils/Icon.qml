@@ -18,7 +18,8 @@ Text {
         "mute": "\u{e949}",
         "volume-low": "\u{e94a}",
         "volume-mid": "\u{e94b}",
-        "volume-high": "\u{e94c}"
+        "volume-high": "\u{e94c}",
+        "sangue": "\u{e94d}"
     }
 
     readonly property var medoIcons: {

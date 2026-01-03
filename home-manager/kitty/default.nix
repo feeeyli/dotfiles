@@ -1,7 +1,7 @@
 { ... }:
 
 {
-  stylix.targets.kitty.enable = false;
+  # stylix.targets.kitty.enable = false;
 
   programs.kitty = {
     enable = true;
@@ -10,51 +10,51 @@
       shell = "zsh";
       cursor_shape = "beam";
       window_margin_width = "6 12";
-      # cursor = "#e0def4";
+      allow_remote_control = true;
 
       ## Theme
 
-      foreground = "#fffafa";
-      background = "#000000";
-      selection_foreground = "none";
-      selection_background = "#4F0610";
+      # foreground = "#fffafa";
+      # background = "#000000";
+      # selection_foreground = "none";
+      # selection_background = "#4F0610";
 
-      cursor = "#9e0c21";
-      cursor_text_color = "background";
+      # cursor = "#9e0c21";
+      # cursor_text_color = "background";
 
-      url_color = "#9e0c21";
+      # url_color = "#9e0c21";
 
       # black
-      color0 = "#000000";
-      color8 = "#777777";
+      # color0 = "#000000";
+      # color8 = "#777777";
 
-      # red
-      color1 = "#9e0c21";
-      color9 = "#9e283d";
+      # # red
+      # color1 = "#9e0c21";
+      # color9 = "#9e283d";
 
-      # green
-      color2 = "#829e36";
-      color10 = "#889e4c";
+      # # green
+      # color2 = "#829e36";
+      # color10 = "#889e4c";
 
-      # yellow
-      color3 = "#c4a033";
-      color11 = "#c4a74f";
+      # # yellow
+      # color3 = "#c4a033";
+      # color11 = "#c4a74f";
 
-      # blue
-      color4 = "#36429e";
-      color12 = "#4c7f9e";
+      # # blue
+      # color4 = "#36429e";
+      # color12 = "#4c7f9e";
 
-      # magenta
-      color5 = "#71369e";
-      color13 = "#6b4c9e";
+      # # magenta
+      # color5 = "#71369e";
+      # color13 = "#6b4c9e";
 
-      # cyan
-      color6 = "#369e99";
-      color14 = "#4c9e8a";
+      # # cyan
+      # color6 = "#369e99";
+      # color14 = "#4c9e8a";
 
-      # white
-      color7 = "#eeffff";
-      color15 = "#ffffff";
+      # # white
+      # color7 = "#eeffff";
+      # color15 = "#ffffff";
     };
   };
 }

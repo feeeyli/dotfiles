@@ -15,7 +15,7 @@ MouseArea {
         opacity: 0
 
         gradient: Gradient {
-            orientation: Gradient.Horizontal
+            // orientation: Gradient.Horizontal
 
             GradientStop {
                 position: 0.0

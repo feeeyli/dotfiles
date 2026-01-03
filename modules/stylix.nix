@@ -3,26 +3,28 @@
 {
   stylix.enable = true;
 
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine-dawn.yaml";
+  # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/horizon-terminal-dark.yaml";
+  # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/unikitty-dark.yaml";
 
-  # stylix.base16Scheme = {
-  #   base00 = "#d8d8d8";
-  #   base01 = "#9893a5";
-  #   base02 = "#9893a5";
-  #   base03 = "#6c6c6c";
-  #   base04 = "#ececec";
-  #   base05 = "#000000";
-  #   base06 = "#575279";
-  #   base07 = "#575279";
-  #   base08 = "#ff4040";
-  #   base09 = "#ffa043";
-  #   base0A = "#ffa043";
-  #   base0B = "#2ea62e";
-  #   base0C = "#77baac";
-  #   base0D = "#6dbbff";
-  #   base0E = "#a96bff";
-  #   base0F = "#eb5c2d";
-  # };
+  stylix.base16Scheme = {
+    base00 = "#140f0f";
+    base01 = "#232530";
+    base02 = "#2E303E";
+    base03 = "#6F6F70";
+    base04 = "#9DA0A2";
+    base05 = "#CBCED0";
+    base06 = "#DCDFE4";
+    base07 = "#E3E6EE";
+    # base08 = "#E95678";
+    base08 = "#D20D1B";
+    base09 = "#FAB795";
+    base0A = "#FAC29A";
+    base0B = "#29D398";
+    base0C = "#59E1E3";
+    base0D = "#26BBD9";
+    base0E = "#EE64AC";
+    base0F = "#F09383";
+  };
 
   stylix.cursor = {
     package = pkgs.rose-pine-cursor;
@@ -52,7 +54,7 @@
     };
 
     emoji = {
-      package = pkgs.noto-fonts-emoji;
+      package = pkgs.noto-fonts-color-emoji;
       name = "Noto Color Emoji";
     };
   };

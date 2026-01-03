@@ -49,35 +49,43 @@
     nix-config = {
       name = "Abrir Arquivos de Configuração";
       exec = "zeditor /home/feyli/dotfiles";
-      icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+      icon = "settings";
+      # icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
       genericName = "Configurações";
     };
     nix-rebuild = {
       name = "Rebuildar Sistema (switch)";
-      exec = "kitty sudo nixos-rebuild switch --flake /home/feyli/dotfiles";
-      icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+      exec = "kitty --hold sudo nixos-rebuild switch --flake /home/feyli/dotfiles";
+      icon = "nix";
+      # icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
       genericName = "Configurações";
     };
-    nix-rebuild-test = {
-      name = "Rebuildar Sistema (test)";
-      exec = "kitty sudo nixos-rebuild test --flake /home/feyli/dotfiles";
-      icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-      genericName = "Configurações";
-    };
+    # nix-rebuild-test = {
+    #   name = "Rebuildar Sistema (test)";
+    #   exec = "kitty sudo nixos-rebuild test --flake /home/feyli/dotfiles";
+    #   icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+    #   genericName = "Configurações";
+    # };
     update-roblox = {
       name = "Atualizar Roblox";
       exec = "kitty flatpak update --noninteractive";
-      icon = "org.vinegarhq.Sober";
+      icon = "roblox-player";
     };
     shutdown = {
       name = "Desligar";
       genericName = "Power";
       exec = "systemctl poweroff";
+      icon = "system-shutdown-panel";
     };
     reboot = {
       name = "Reiniciar";
       genericName = "Power";
       exec = "systemctl reboot";
+      icon = "system-restart-panel";
     };
+    # yazi = {
+    #   name = "Yazi";
+    #   icon = "org.gnome.files";
+    # };
   };
 }

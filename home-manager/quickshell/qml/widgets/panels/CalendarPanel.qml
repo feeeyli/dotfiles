@@ -1,25 +1,24 @@
-import QtQuick
 import Quickshell
+import QtQuick
 import QtQuick.Layouts
-import "../js/moment.js" as Moment
-import ".."
+import "../../modules"
+import "../.."
+import "../../js/moment.js" as Moment
 
-PopupWindow {
-    id: root
-    anchor.item: clock
-    // anchor.rect.x: bar.width + 4
-    anchor.rect.y: 0
-    implicitWidth: column.width + 24
-    implicitHeight: column.height + 24
-    visible: false
-    color: "transparent"
+FloatingPanel {
+    // id: root
+    panelName: "music-player"
 
-    Rectangle {
+    SystemClock {
+        id: sysClock
+        precision: SystemClock.Minutes
+    }
+
+    content: Item {
         id: content
-
-        anchors.fill: parent
-        opacity: 0
-        color: "transparent"
+        width: column.width + 24
+        height: column.height + 24
+        x: -width / 2
 
         ColumnLayout {
             id: column
@@ -103,49 +102,22 @@ PopupWindow {
         }
     }
 
-    MouseArea {
-        anchors.fill: parent
-        hoverEnabled: true
-        onEntered: closeTimer.stop()
-        onExited: closeTimer.restart()
+    function formatTime(seconds) {
+        const totalSeconds = Math.floor(seconds);
+        const minutes = Math.floor(totalSeconds / 60);
+        const remainingSeconds = totalSeconds % 60;
+        const formattedTime = `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+        return formattedTime;
     }
 
-    OpacityAnimator {
-        id: openAnimation
-        target: content
-        from: 0
-        to: 1
-        duration: 250
-        easing.type: Easing.OutCubic
-    }
-
-    OpacityAnimator {
-        id: closeAnimation
-        target: content
-        from: 1
-        to: 0
-        duration: 250
-        easing.type: Easing.InOutQuad
-        onFinished: root.visible = false
-    }
-
-    Timer {
-        id: closeTimer
-        interval: 2500
-        running: false
-        onTriggered: {
-            closeAnimation.start();
-        }
-    }
-
-    function toggleOpen() {
-        if (!root.visible) {
-            root.visible = true;
-            closeTimer.start();
-            openAnimation.start();
-        } else {
-            closeTimer.stop();
-            closeAnimation.start();
-        }
-    }
+    // function toggleOpen() {
+    //     if (!root.visible) {
+    //         root.visible = true;
+    //         closeTimer.start();
+    //         openAnimation.start();
+    //     } else {
+    //         closeTimer.stop();
+    //         closeAnimation.start();
+    //     }
+    // }
 }

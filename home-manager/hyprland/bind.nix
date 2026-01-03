@@ -23,9 +23,10 @@
       "$mainMod, P, pseudo,"
       "$mainMod, ALT_L, togglesplit,"
 
-      "$mainMod, F, resizeactive, exact 1440 810"
-      "$mainMod, F, setfloating,"
-      "$mainMod, F, centerwindow,"
+      "$mainMod, F, fullscreen,"
+      # "$mainMod, F, resizeactive, exact 1440 810"
+      # "$mainMod, F, setfloating,"
+      # "$mainMod, F, centerwindow,"
 
       "$mainMod, K, exec, $unmute"
       "$mainMod, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
@@ -66,6 +67,9 @@
 
       "$mainMod, up, workspace, -1"
       "$mainMod, down, workspace, +1"
+
+      "$mainMod SHIFT, up, movetoworkspace, -1"
+      "$mainMod SHIFT, down, movetoworkspace, +1"
 
       "$mainMod SHIFT, left, layoutmsg, swapcol l"
       "$mainMod SHIFT, right, layoutmsg, swapcol r"

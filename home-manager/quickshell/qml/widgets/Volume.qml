@@ -5,21 +5,23 @@ import ".."
 import "../services"
 import "../utils"
 
-ColumnLayout {
-    Layout.preferredWidth: 40
+RowLayout {
+    Layout.preferredHeight: 40
+    spacing: 0
 
     Rectangle {
         id: volumeBar
-        Layout.topMargin: 12
-        Layout.alignment: Qt.AlignHCenter
+        Layout.leftMargin: 12
+        Layout.rightMargin: 12
+        Layout.alignment: Qt.AlignVCenter
         property double percent: AudioService.volume
-        Layout.preferredWidth: 20
-        Layout.preferredHeight: 64
+        Layout.preferredHeight: 20
+        Layout.preferredWidth: 64
         color: "transparent"
 
         Shape {
-            width: 20
-            height: 64
+            height: 20
+            width: 64
             clip: true
             anchors {
                 bottom: parent.bottom
@@ -29,21 +31,21 @@ ColumnLayout {
                 fillColor: ThemeManager.colors.primary(0.25)
                 strokeWidth: 0
                 startX: 0
-                startY: 0
+                startY: 20
                 PathLine {
-                    x: 20
-                    relativeY: 0
+                    x: 64
+                    y: 0
                 }
                 PathLine {
-                    x: 0
-                    y: 64
+                    x: 64
+                    y: 20
                 }
             }
         }
 
         Shape {
-            width: 20
-            height: 64 * volumeBar.percent
+            height: 20
+            width: 64 * volumeBar.percent
             clip: true
             anchors {
                 bottom: parent.bottom
@@ -53,14 +55,14 @@ ColumnLayout {
                 fillColor: ThemeManager.colors.primary()
                 strokeWidth: 0
                 startX: 0
-                startY: -64 + 64 * volumeBar.percent
+                startY: 20
                 PathLine {
-                    x: 20
-                    relativeY: 0
+                    x: 64
+                    y: 0
                 }
                 PathLine {
-                    x: 0
-                    y: 64 * volumeBar.percent
+                    x: 64 * volumeBar.percent
+                    y: 20
                 }
             }
         }
@@ -68,8 +70,8 @@ ColumnLayout {
 
     Icon {
         id: volumeIcon
-        Layout.bottomMargin: 12
-        Layout.alignment: Qt.AlignHCenter
+        Layout.rightMargin: 12
+        Layout.alignment: Qt.AlignVCenter
         size: 20
         name: {
             const volume = Math.round(AudioService.volume * 100);

@@ -5,14 +5,16 @@ import "../utils"
 import "../services"
 
 ListView {
+    orientation: Qt.Horizontal
     spacing: 0
-    width: 40
-    height: HyprlandService.workspaces.count * 40
-    Layout.fillHeight: true
-    Layout.topMargin: 12
+    height: 40
+    width: Math.min(NiriService.workspaces.count * 40, 40 * 15)
+    Layout.fillWidth: true
+    // Layout.maximumWidth: 250
+    Layout.leftMargin: 12
     clip: true
 
-    model: HyprlandService.workspaces
+    model: NiriService.workspaces
 
     delegate: Rectangle {
         implicitHeight: 40
@@ -28,7 +30,7 @@ ListView {
 
         GradientMouseArea {
             onClicked: {
-                HyprlandService.switchToWorkspace(model);
+                NiriService.switchToWorkspace(model);
                 // miguel.positionViewAtIndex(11, ListView.Contain);
             }
         }

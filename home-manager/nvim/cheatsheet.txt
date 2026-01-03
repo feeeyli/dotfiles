@@ -1,0 +1,41 @@
+## general
+open file picker | space + e
+
+## goto
+goto start of file | gg
+goto end of file | ge
+goto start of line | shift + left
+goto end of line | shift + right
+
+## replace
+replace current word | ciw
+replace selected | c
+replace char | s
+replace <surround> | sr<surround>
+
+## edit
+append at end of line | A
+insert at start of line | I
+comment | gcc
+delete line | dd
+add <surround> | sa<surround>
+delete <surround> | sd<surround>
+
+## select
+
+select line | V 
+select word | viw
+select inside <surround> | vi<surround>
+select around <surround> | va<surround>
+select all | vt
+increment selection | alt + o
+decrement selection | alt + i
+
+## search
+search | /
+dispense search highlights | space + h
+
+## manipulation
+
+duplicate selected | gm
+move selected | alt + <up or down>

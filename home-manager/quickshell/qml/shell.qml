@@ -1,7 +1,7 @@
 import Quickshell
 import QtQuick
 import "./widgets"
-import "./services"
+import "./widgets/panels"
 
 ShellRoot {
     // FontLoader {
@@ -36,5 +36,53 @@ ShellRoot {
 
     Bar {}
 
-    Wallpaper {}
+    // PanelWindow {
+    //     anchors {
+    //         top: true
+    //         left: true
+    //         bottom: true
+    //     }
+
+    //     implicitWidth: 38
+
+    //     color: "transparent"
+    // }
+
+    // PanelWindow {
+    //     anchors {
+    //         top: true
+    //         right: true
+    //         bottom: true
+    //     }
+
+    //     implicitWidth: 38
+
+    //     color: "transparent"
+    // }
+
+    // PanelWindow {
+    //     anchors {
+    //         left: true
+    //         bottom: true
+    //         right: true
+    //     }
+
+    //     implicitHeight: 24
+
+    //     color: "transparent"
+    // }
+
+    // Wallpaper {}
+
+    MusicPlayerPanel {
+        id: musicPlayerPanel
+    }
+
+    CalendarPanel {
+        id: calendarPanel
+    }
+
+    Component.onCompleted: {
+        // console.log(JSON.stringify(DesktopEntries.applications.values));
+    }
 }
