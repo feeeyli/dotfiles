@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 
 {
   # stylix.targets.kitty.enable = false;
@@ -11,6 +11,8 @@
       cursor_shape = "beam";
       window_margin_width = "6 12";
       allow_remote_control = true;
+
+      background_opacity = lib.mkForce "0.8";
 
       ## Theme
 

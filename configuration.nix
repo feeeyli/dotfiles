@@ -132,7 +132,7 @@
     kdePackages.qtdeclarative
     ffmpeg
     mpvpaper
-    distrobox
+    # distrobox
     tree
     pavucontrol
     flex-launcher

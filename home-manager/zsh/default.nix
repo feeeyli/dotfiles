@@ -5,6 +5,7 @@
     enable = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    historySubstringSearch.enable = true;
     oh-my-zsh = {
       # enable = true;
       theme = "fwalch";
@@ -29,6 +30,8 @@
       rebuild = "sudo nixos-rebuild switch --flake ~/dotfiles";
 
       nodeflake = "cp ~/www/example_node_flake.nix flake.nix";
+
+      nvim = "~/dotfiles/home-manager/nvim/knvim.sh";
     };
     envExtra = ''
       export NVM_DIR="$HOME/.nvm"

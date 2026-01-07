@@ -3,6 +3,7 @@
 {
   programs.nvf.settings.vim.keymaps = [
     {
+      desc = "Save File";
       key = "<C-s>";
       mode = [
         "i"
@@ -14,17 +15,20 @@
       action = "<cmd>w<cr><esc>";
     }
     {
+      desc = "Quit Neovim";
       key = "<C-q>";
       mode = "n";
       action = ":q<CR>";
     }
     {
+      desc = "Clear Selection";
       mode = "n";
       key = "<leader>h";
       action = ":noh<CR>";
     }
 
     {
+      desc = "Last line";
       mode = [
         "n"
         "v"
@@ -33,6 +37,7 @@
       action = "G";
     }
     {
+      desc = "Start of line";
       mode = [
         "n"
         "v"
@@ -41,6 +46,7 @@
       action = "^";
     }
     {
+      desc = "End of line";
       mode = [
         "n"
         "v"
@@ -50,6 +56,7 @@
     }
 
     {
+      desc = "Select all";
       mode = [
         "n"
         "v"
@@ -58,10 +65,42 @@
       action = "ggVG";
     }
     {
+      desc = "Comment block";
       mode = "n";
       key = "<C-c>";
       action = "gcc";
     }
+
+    {
+      desc = "Go to code actions";
+      mode = "n";
+      key = "ga";
+      action = "<cmd>lua require('actions-preview').code_actions()<CR>";
+    }
+    {
+      desc = "Open buffers";
+      mode = "n";
+      key = "<leader><tab>";
+      action = "<cmd>lua require('bafa').toggle()<CR>";
+    }
+
+    {
+      desc = "Redo";
+      mode = "n";
+      key = "U";
+      action = "<cmd>redo<CR>";
+    }
+
+    {
+      mode = [
+        "n"
+        "l"
+        "v"
+      ];
+      key = "<Tab>";
+      action = "<esc>";
+    }
+
     # {
     #   mode = [
     #     "n"

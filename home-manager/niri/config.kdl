@@ -1,0 +1,140 @@
+input {
+    keyboard {
+        xkb {
+            layout "br"
+            options "caps:swapescape"
+        }
+
+        numlock
+    }
+
+    focus-follows-mouse max-scroll-amount="0%"
+}
+
+layout {
+    gaps 8
+
+    center-focused-column "never"
+
+    preset-column-widths {
+        proportion 1.0
+    }
+
+    default-column-width { proportion 1.0; }
+
+    focus-ring {
+        width 2
+
+        active-color "#D20D1B"
+
+        inactive-color "#100000"
+    }
+
+    background-color "transparent"
+}
+
+spawn-at-startup "qs"
+spawn-at-startup "firefox"
+
+spawn-sh-at-startup "mpvpaper -o \"--panscan=1 --window-maximized=yes --loop-file\" all ~/wallpaper.mp4"
+spawn-sh-at-startup "amixer -c 1 sset \"Auto-Mute Mode\" Disabled & amixer -c 1 sset Front unmute"
+spawn-sh-at-startup "systemctl --user start hyprpolkitagent"
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+prefer-no-csd
+
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+// screenshot-path null
+
+animations {
+
+}
+
+window-rule {
+    open-maximized-to-edges false
+}
+
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+// window-rule {
+//     match app-id=r#"kitty"#
+//
+//     opacity 0.85
+// }
+
+layer-rule {
+  match namespace="^mpvpaper$"
+
+  place-within-backdrop true
+}
+
+/-window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    match app-id=r#"^org\.gnome\.World\.Secrets$"#
+
+    block-out-from "screen-capture"
+}
+
+binds {
+    // Keys consist of modifiers separated by + signs, followed by an XKB key name
+    // in the end. To find an XKB name for a particular key, you may use a program
+    // like wev.
+
+    Mod+Q repeat=false     { spawn "kitty"; }
+    Mod+Space repeat=false { spawn-sh "rofi -show drun"; }
+
+    Mod+O repeat=false { toggle-overview; }
+
+    Mod+W repeat=false { close-window; }
+
+    Mod+Up    { focus-window-or-workspace-up; }
+    Mod+Right { focus-column-right; }
+    Mod+Down  { focus-window-or-workspace-down; }
+    Mod+Left  { focus-column-left; }
+
+    Mod+Shift+Left  { move-column-left; }
+    Mod+Shift+Right { move-column-right; }
+
+    Mod+Shift+Down { move-window-to-workspace-down; }
+    Mod+Shift+Up   { move-window-to-workspace-up; }
+
+    Mod+Shift+Page_Down { move-workspace-down; }
+    Mod+Shift+Page_Up   { move-workspace-up; }
+
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+    Mod+Shift+6 { move-column-to-workspace 6; }
+    Mod+Shift+7 { move-column-to-workspace 7; }
+    Mod+Shift+8 { move-column-to-workspace 8; }
+    Mod+Shift+9 { move-column-to-workspace 9; }
+
+    Mod+BracketLeft  { set-column-width "-10%"; }
+    Mod+BracketRight { set-column-width "+10%"; }
+    Mod+Equal        { switch-preset-column-width; }
+
+    Mod+V { toggle-window-floating; }
+
+    Print { screenshot; }
+    Shift+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+}

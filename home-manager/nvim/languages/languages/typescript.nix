@@ -12,5 +12,6 @@
     lsp = {
       enable = true;
     };
+    extraDiagnostics.enable = true;
   };
 }

@@ -7,8 +7,8 @@
   imports = [
     inputs.nvf.homeManagerModules.default
     ./keymaps.nix
-    ./plugins.nix
     ./theme.nix
+    ./plugins
     ./languages
   ];
 
@@ -30,6 +30,7 @@
         autoindent = true;
         wrap = false;
         scrolloff = 5;
+        showmode = false;
       };
 
       searchCase = "smart";

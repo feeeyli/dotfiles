@@ -7,7 +7,7 @@
     layout = [
       {
         type = "padding";
-        val = 9;
+        val = 10;
       }
       {
         type = "text";
@@ -36,7 +36,7 @@
       }
       {
         type = "padding";
-        val = 9;
+        val = 10;
       }
     ];
   };

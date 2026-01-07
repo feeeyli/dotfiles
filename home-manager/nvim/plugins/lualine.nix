@@ -23,60 +23,47 @@ in
           fg = color "05";
         };
         b = {
-          bg = color "02";
+          bg = color "01";
           fg = color "05";
         };
-        c = {
-          bg = color "01";
-          fg = color "03";
-        };
+        c.bg = "none";
       };
       insert = {
         a = {
           bg = color "0B";
           fg = color "01";
         };
-        b = {
-          bg = color "02";
-          fg = color "01";
-        };
-        c = {
-          bg = color "01";
-          fg = color "03";
-        };
+        # b = {
+        #   bg = color "02";
+        #   fg = color "01";
+        # };
       };
       visual = {
         a = {
           bg = color "0E";
           fg = color "01";
         };
-        b = {
-          bg = color "02";
-          fg = color "05";
-        };
-        c = {
-          bg = color "01";
-          fg = color "03";
-        };
+        # b = {
+        #   bg = color "02";
+        #   fg = color "05";
+        # };
       };
       command = {
         a = {
           bg = color "09";
           fg = color "01";
         };
-        b = {
-          bg = color "02";
-          fg = color "05";
-        };
-        c = {
-          bg = color "01";
-          fg = color "03";
-        };
+        # b = {
+        #   bg = color "02";
+        #   fg = color "05";
+        # };
       };
     };
     activeSection = {
       a = [ ''{ "mode" }'' ];
-      b = [ ];
+      b = [
+        ''{ "filename", file_status = true, symbols = {modified = '',readonly = '',unnamed = '',newfile = ''}}''
+      ];
       c = [ ];
       x = [ ];
       y = [ ''{ "branch", icon = '', }'' ];
