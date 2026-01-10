@@ -1,9 +1,9 @@
 { pkgs, ... }:
 {
-  imports = [
-    ./hardware-configuration.nix
-    ./modules/stylix.nix
-  ];
+  # imports = [
+  #   ./hardware-configuration.nix
+  #   ./modules/stylix.nix
+  # ];
 
   security.polkit.enable = true;
 
@@ -12,54 +12,27 @@
     "flakes"
   ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  services.xserver.enable = true;
-  services.xserver.windowManager.openbox = {
-    enable = true;
+  boot = {
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
   };
-
-  services.xserver.displayManager.startx.enable = true;
-
-  #  services.displayManager.autoLogin.enable = true;
-  #  services.displayManager.autoLogin.user = "feyli";
-
-  #  services.displayManager.defaultSession = "none+openbox";
-
-  #  services.displayManager.sddm = {
-  #    enable = true;
-  #    settings = {
-  #      Autologin = {
-  #        Session = "openbox.desktop";
-  #        User = "feyli";
-  #      };
-  #    };
-  #  };
-
-  networking.hostName = "nixos";
-
-  networking.networkmanager.enable = true;
 
   time.timeZone = "America/Sao_Paulo";
 
-  i18n.defaultLocale = "pt_BR.UTF-8";
+  i18n = {
+    defaultLocale = "pt_BR.UTF-8";
 
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "pt_BR.UTF-8";
-    LC_IDENTIFICATION = "pt_BR.UTF-8";
-    LC_MEASUREMENT = "pt_BR.UTF-8";
-    LC_MONETARY = "pt_BR.UTF-8";
-    LC_NAME = "pt_BR.UTF-8";
-    LC_NUMERIC = "pt_BR.UTF-8";
-    LC_PAPER = "pt_BR.UTF-8";
-    LC_TELEPHONE = "pt_BR.UTF-8";
-    LC_TIME = "pt_BR.UTF-8";
-  };
-
-  services.xserver.xkb = {
-    layout = "br";
-    variant = "";
+    extraLocaleSettings = {
+      LC_ADDRESS = "pt_BR.UTF-8";
+      LC_IDENTIFICATION = "pt_BR.UTF-8";
+      LC_MEASUREMENT = "pt_BR.UTF-8";
+      LC_MONETARY = "pt_BR.UTF-8";
+      LC_NAME = "pt_BR.UTF-8";
+      LC_NUMERIC = "pt_BR.UTF-8";
+      LC_PAPER = "pt_BR.UTF-8";
+      LC_TELEPHONE = "pt_BR.UTF-8";
+      LC_TIME = "pt_BR.UTF-8";
+    };
   };
 
   console.keyMap = "br-abnt2";
@@ -76,12 +49,34 @@
     shell = pkgs.zsh;
   };
 
-  services.getty.autologinUser = "feyli";
+  services = {
+    xserver.xkb = {
+      layout = "br";
+      variant = "";
+    };
 
-  services.gvfs.enable = true;
-  services.udisks2.enable = true;
+    getty.autologinUser = "feyli";
 
-  services.flatpak.enable = true;
+    gvfs.enable = true;
+    udisks2.enable = true;
+
+    flatpak.enable = true;
+  };
+
+  networking = {
+    hostName = "nixos";
+
+    networkmanager.enable = true;
+
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [
+        5173
+        8000
+        3000
+      ];
+    };
+  };
 
   nixpkgs.config.allowUnfree = true;
 
@@ -103,58 +98,22 @@
 
   environment.systemPackages = with pkgs; [
     alsa-utils
-    android-studio
-    bun
     fastfetch
+    feh
+    ffmpeg
     gdu
     gedit
     gh
     git
-    grim
-    hyprpicker
-    hyprpolkitagent
-    libresprite
     nautilus
     nemo
-    nil
-    nix-output-monitor
-    nixd
-    nixfmt-rfc-style
-    nodejs_24
-    obs-studio
-    obsidian
-    prismlauncher
-    qbittorrent
+    pavucontrol
+    polkit_gnome
     qview
     slurp
-    wine
-    wl-clipboard
-    kdePackages.qtdeclarative
-    ffmpeg
-    mpvpaper
-    # distrobox
-    tree
-    pavucontrol
-    flex-launcher
-    feh
-    xorg.xhost
-    xorg.xinit
-    scrcpy
-    uwu-colors
-    helix
-    oh-my-posh
     wget
-    vesktop
+    wl-clipboard
   ];
-
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [
-      5173
-      8000
-      3000
-    ];
-  };
 
   system.stateVersion = "25.05";
 }

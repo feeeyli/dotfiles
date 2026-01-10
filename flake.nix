@@ -36,18 +36,13 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    zen-browser = {
-      url = "github:0xc000022070/zen-browser-flake";
-      inputs = {
-        # IMPORTANT: we're using "libgbm" and is only available in unstable so ensure
-        # to have it up-to-date or simply don't specify the nixpkgs input
-        nixpkgs.follows = "nixpkgs-unstable";
-        home-manager.follows = "home-manager";
-      };
-    };
-
     nvf = {
       url = "github:NotAShelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    niri-flake = {
+      url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -79,21 +74,25 @@
           stylix.nixosModules.stylix
 
           ./configuration.nix
+          ./hardware-configuration.nix
           ./modules/flatpak.nix
+          ./modules/stylix.nix
 
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
 
-            home-manager.extraSpecialArgs = {
-              inherit inputs;
-              inherit pkgs-unstable;
+              extraSpecialArgs = {
+                inherit inputs;
+                inherit pkgs-unstable;
+              };
+
+              users.feyli = import ./home-manager/home.nix;
+
+              backupFileExtension = "hm-backup";
             };
-
-            home-manager.users.feyli = import ./home-manager/home.nix;
-
-            home-manager.backupFileExtension = "hm-backup";
           }
 
           (

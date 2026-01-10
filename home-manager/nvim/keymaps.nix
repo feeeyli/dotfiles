@@ -92,24 +92,25 @@
     }
 
     {
+      desc = "Copy to system clipboard";
       mode = [
         "n"
-        "l"
         "v"
       ];
-      key = "<Tab>";
-      action = "<esc>";
+      key = "<leader>y";
+      action = ''"+y'';
     }
-
-    # {
-    #   mode = [
-    #     "n"
-    #     "v"
-    #   ];
-    #   key = "<C-M-down>";
-    #   action = "<cmd>lua MiniOperators.multiply()<CR>";
-    # }
-    # vim.keymap.set("x", "<", "<gv")
-    # vim.keymap.set("x", ">", ">gv")
+    {
+      desc = "Delete without yank";
+      mode = "v";
+      key = "<M-d>";
+      action = ''"_d'';
+    }
+    {
+      desc = "Delete line without yank";
+      mode = "n";
+      key = "<M-d>";
+      action = ''"_dd'';
+    }
   ];
 }

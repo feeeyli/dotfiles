@@ -1,8 +1,8 @@
 { config, ... }:
 
 let
-  colors = config.lib.stylix.colors;
-  color = hx: "#${colors."base${hx}"}";
+  colors = config.programs.nvf.settings.vim.theme.base16-colors;
+  color = hx: colors."base${hx}";
 in
 {
   programs.nvf.settings.vim.statusline.lualine = {
@@ -19,7 +19,7 @@ in
     setupOpts.options.theme = {
       normal = {
         a = {
-          bg = color "08";
+          bg = "#ed333b";
           fg = color "05";
         };
         b = {
@@ -33,30 +33,18 @@ in
           bg = color "0B";
           fg = color "01";
         };
-        # b = {
-        #   bg = color "02";
-        #   fg = color "01";
-        # };
       };
       visual = {
         a = {
           bg = color "0E";
           fg = color "01";
         };
-        # b = {
-        #   bg = color "02";
-        #   fg = color "05";
-        # };
       };
       command = {
         a = {
           bg = color "09";
           fg = color "01";
         };
-        # b = {
-        #   bg = color "02";
-        #   fg = color "05";
-        # };
       };
     };
     activeSection = {

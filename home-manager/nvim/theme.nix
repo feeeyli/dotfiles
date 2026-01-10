@@ -1,37 +1,29 @@
-{ ... }:
+{ config, ... }:
 
 let
-  colors = {
-    base00 = "#2e2a31";
-    base01 = "#4a464d";
-    base02 = "#666369";
-    base03 = "#838085";
-    base04 = "#9f9da2";
-    base05 = "#bcbabe";
-    base06 = "#d8d7da";
-    base07 = "#f5f4f7";
-    base08 = "#d8137f";
-    base09 = "#d65407";
-    base0A = "#dc8a0e";
-    base0B = "#17ad98";
-    base0C = "#149bda";
-    base0D = "#796af5";
-    base0E = "#bb60ea";
-    base0F = "#c720ca";
-  };
+  # base08 = "#ff5555";
+  # base09 = "#ffb86c";
+  # base0A = "#f1fa8c";
+  # base0B = "#50fa7b";
+  # base0C = "#8be9fd";
+  # base0D = "#80bfff";
+  # base0E = "#ff79c6";
+  # base0F = "#bd93f9";
+  colors = config.programs.nvf.settings.vim.theme.base16-colors;
   color = hx: colors."base${hx}";
 
-  punctuation_fg = color "03"; # #838085
-  neutral_fg = color "06"; # #d8d7da
-  comment_fg = color "08"; # #d8137f
-  type_fg = color "09"; # #d65a07
-  tag_fg = color "0A"; # #dc8a0e
-  value_fg = color "0B"; # #17ad98
-  function_fg = color "0C"; # #149bda
-  method_fg = color "06"; # #149bda
-  class_fg = color "0D"; # #796af5
-  variable_fg = color "0E"; # #bb60ea
-  property_fg = color "06"; # #c720ca
+  punctuation_fg = color "03";
+  neutral_fg = color "06";
+  method_fg = color "06";
+  property_fg = color "06";
+
+  type_fg = color "09";
+  tag_fg = color "0A";
+  value_fg = color "0B";
+  function_fg = color "0C";
+  class_fg = color "0D";
+  comment_fg = color "0E";
+  variable_fg = color "0F";
 in
 {
   programs.nvf.settings.vim.highlight = {
@@ -576,34 +568,16 @@ in
     TelescopeNormal.bg = "none";
     TelescopeResultsTitle.fg = color "06";
 
-    BufferLineFill = {
-      bg = "none";
-      fg = punctuation_fg;
-    };
-    BufferLineTab = {
-      bg = "none";
-      fg = punctuation_fg;
-    };
-    BufferLineBuffer = {
-      bg = "none";
-      fg = punctuation_fg;
-    };
-    BufferLineBufferSelected = {
-      bg = "none";
-      fg = neutral_fg;
-      sp = neutral_fg;
-    };
-
     BafaModified.fg = neutral_fg;
     BafaDeleted.fg = color "08";
 
     Indent.fg = color "01";
     IndentScope.fg = color "02";
 
-    Red.fg = "#D20D1B";
+    Red.fg = "#ed333b";
     StatusLine.bg = "none";
 
-    YaziBufferHovered.bg = "none";
-    YaziBufferHoveredInSameDirectory.bg = "none";
+    # YaziBufferHovered.bg = "none";
+    # YaziBufferHoveredInSameDirectory.bg = "none";
   };
 }

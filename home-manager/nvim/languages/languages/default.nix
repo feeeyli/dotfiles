@@ -15,5 +15,17 @@
       lsp.enable = true;
       treesitter.enable = true;
     };
+    markdown = {
+      enable = true;
+      extensions.render-markdown-nvim.enable = true;
+    };
+    kotlin = {
+      enable = true;
+      lsp.enable = true;
+    };
+    java = {
+      enable = true;
+      lsp.enable = true;
+    };
   };
 }

@@ -1,6 +1,8 @@
 { config, ... }:
 
 {
+  stylix.targets.yazi.colors.enable = false;
+
   programs.yazi = {
     enable = true;
 

@@ -15,8 +15,11 @@
     };
     autopairs.nvim-autopairs.enable = true;
     autocomplete = {
-      blink-cmp.enable = true;
-      blink-cmp.setupOpts.signature.enabled = true;
+      blink-cmp = {
+        enable = true;
+        setupOpts.signature.enabled = true;
+        sourcePlugins.emoji.enable = true;
+      };
     };
     snippets.luasnip.enable = true;
     ui.nvim-highlight-colors.enable = true;
@@ -26,6 +29,7 @@
       grammars = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
         vue
         scss
+        kotlin
       ];
       mappings.incrementalSelection = {
         init = "<A-o>";
@@ -66,6 +70,15 @@
       tiny-inline-diagnostics = {
         package = tiny-inline-diagnostic-nvim;
         setup = "require('tiny-inline-diagnostic').setup({options = {multilines = {enabled = true, always_show = true, trim_whitespaces = true}}})";
+      };
+      transparent-nvim = {
+        package = transparent-nvim;
+        setup = "require('transparent').setup({
+          extra_groups = {
+            'NormalFloat',
+            'FloatBorder'
+          }
+        })";
       };
       actions-preview = {
         package = actions-preview-nvim;

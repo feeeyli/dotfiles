@@ -2,6 +2,7 @@
 
 {
   # stylix.targets.kitty.enable = false;
+  stylix.targets.kitty.colors.enable = false;
 
   programs.kitty = {
     enable = true;
@@ -13,6 +14,56 @@
       allow_remote_control = true;
 
       background_opacity = lib.mkForce "0.8";
+
+      color0 = "#1d1d1d";
+      # color1 = "#ed333b";
+      # color2 = "#57e389";
+      # color3 = "#ff7800";
+      # color4 = "#62a0ea";
+      # color5 = "#9141ac";
+      # color6 = "#5bc8af";
+      color7 = "#deddda";
+
+      color8 = "#9a9996";
+      # color9 = "#f66151";
+      # color10 = "#8ff0a4";
+      # color11 = "#ffa348";
+      # color12 = "#99c1f1";
+      # color13 = "#dc8add";
+      # color14 = "#93ddc2";
+      color15 = "#f6f5f4";
+
+      # # black
+      # color0 = "#21222c";
+      # color8 = "#6272a4";
+
+      # red
+      color1 = "#ed333b";
+      color9 = "#f66151";
+
+      # green
+      color2 = "#50fa7b";
+      color10 = "#69ff94";
+
+      # yellow
+      color3 = "#f1fa8c";
+      color11 = "#ffffa5";
+
+      # blue
+      color4 = "#bd93f9";
+      color12 = "#d6acff";
+
+      # magenta
+      color5 = "#ff79c6";
+      color13 = "#ff92df";
+
+      # cyan
+      color6 = "#8be9fd";
+      color14 = "#a4ffff";
+
+      # # white
+      # color7 = "#f8f8f2";
+      # color15 = "#ffffff";
 
       ## Theme
 

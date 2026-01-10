@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 {
   imports = [
@@ -23,7 +23,22 @@
     homeDirectory = "/home/feyli";
 
     packages = with pkgs; [
+      grim
+      hyprpicker
+      hyprpolkitagent
+      kdePackages.qtdeclarative
+      libresprite
+      mpvpaper
+      obs-studio
+      obsidian
+      oh-my-posh
+      prismlauncher
+      qbittorrent
+      vesktop
+      wine
       xwayland-satellite
+
+      pkgs-unstable.jetbrains.idea
     ];
 
     shell.enableZshIntegration = true;
@@ -64,12 +79,12 @@
     };
   };
 
-  gtk = {
-    enable = true;
-    iconTheme = {
-      name = "besgnulinux-mono-red";
-    };
-  };
+  # gtk = {
+  #   enable = true;
+  #   iconTheme = {
+  #     name = "besgnulinux-mono-red";
+  #   };
+  # };
 
   home.stateVersion = "25.05";
 }
