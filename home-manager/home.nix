@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -16,6 +16,9 @@
     ./niri
     ./fastfetch
     ./distrobox
+    ./tofi
+    ./qutebrowser
+    ./rmpc
   ];
 
   home = {
@@ -37,8 +40,9 @@
       vesktop
       wine
       xwayland-satellite
+      fd
 
-      pkgs-unstable.jetbrains.idea
+      # pkgs-unstable.jetbrains.idea
     ];
 
     shell.enableZshIntegration = true;
@@ -76,6 +80,30 @@
       enable = true;
       colors = "always";
       icons = "always";
+    };
+    fzf = {
+      enable = true;
+      enableZshIntegration = true;
+      colors = lib.mkForce {
+        "bg+" = "#1d1d1d";
+        pointer = "#ed333b";
+        prompt = "#ed333b";
+      };
+    };
+    bat = {
+      enable = true;
+      themes = {
+        catppuccin = {
+          src = pkgs.fetchFromGitHub {
+            owner = "catppuccin";
+            repo = "bat";
+            rev = "d2bbee4f7e7d5bac63c054e4d8eca57954b31471";
+            sha256 = "sha256-x1yqPCWuoBSx/cI94eA+AWwhiSA42cLNUOFJl7qjhmw=";
+          };
+          file = "themes/Catppuccin Frappe.tmTheme";
+        };
+      };
+      config.theme = lib.mkForce "catppuccin";
     };
   };
 

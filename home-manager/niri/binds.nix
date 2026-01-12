@@ -12,7 +12,7 @@
     };
     "Mod+E" = {
       repeat = false;
-      action = spawn-sh "yazi";
+      action = spawn "yazi";
     };
 
     "Mod+O" = {

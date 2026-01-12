@@ -8,7 +8,15 @@
   ];
 
   programs.nvf.settings.vim = {
-    telescope.enable = true;
+    # telescope.enable = true;
+    fzf-lua = {
+      enable = true;
+      setupOpts.fzf_colors = {
+        "bg+" = "#1d1d1d";
+        pointer = "#ed333b";
+        prompt = "#ed333b";
+      };
+    };
     binds.whichKey = {
       enable = true;
       setupOpts.preset = "helix";
@@ -17,12 +25,38 @@
     autocomplete = {
       blink-cmp = {
         enable = true;
-        setupOpts.signature.enabled = true;
         sourcePlugins.emoji.enable = true;
+        setupOpts = {
+          signature.enabled = true;
+          completion = {
+            menu = {
+              border = "rounded";
+            };
+            documentation = {
+              window = {
+                border = "rounded";
+              };
+            };
+          };
+          signature = {
+            window = {
+              border = "rounded";
+            };
+          };
+        };
       };
     };
     snippets.luasnip.enable = true;
     ui.nvim-highlight-colors.enable = true;
+
+    ui.noice = {
+      enable = true;
+      setupOpts = {
+        cmdline = {
+          view = "cmdline";
+        };
+      };
+    };
 
     treesitter = {
       autotagHtml = true;
@@ -48,18 +82,19 @@
 
     comments.comment-nvim = {
       enable = true;
-      mappings = {
-        toggleSelectedLine = "<C-c>";
-      };
+      # mappings = {
+      #   toggleSelectedLine = "<C-c>";
+      # };
     };
 
-    visuals.fidget-nvim.enable = true;
+    # visuals.fidget-nvim.enable = true;
 
     extraPlugins = with pkgs.vimPlugins; {
       ts-autotag = {
         package = nvim-ts-autotag;
         setup = "require('nvim-ts-autotag').setup()";
       };
+
       cheatsheet-nvim = {
         package = cheatsheet-nvim;
         setup = "require('cheatsheet').setup({

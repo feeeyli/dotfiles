@@ -45,6 +45,11 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -56,6 +61,7 @@
       nix-flatpak,
       nixpkgs-unstable,
       quickshell,
+      nur,
       ...
     }@inputs:
     let
@@ -72,6 +78,8 @@
           nix-flatpak.nixosModules.nix-flatpak
 
           stylix.nixosModules.stylix
+
+          nur.modules.nixos.default
 
           ./configuration.nix
           ./hardware-configuration.nix

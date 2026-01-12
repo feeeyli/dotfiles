@@ -64,12 +64,18 @@
       key = "vt";
       action = "ggVG";
     }
-    {
-      desc = "Comment block";
-      mode = "n";
-      key = "<C-c>";
-      action = "gcc";
-    }
+    # {
+    #   desc = "Comment block";
+    #   mode = "v";
+    #   key = "<C-c>";
+    #   action = "gb";
+    # }
+    # {
+    #   desc = "Comment line";
+    #   mode = "n";
+    #   key = "<C-c>";
+    #   action = "gc";
+    # }
 
     {
       desc = "Go to code actions";
@@ -111,6 +117,43 @@
       mode = "n";
       key = "<M-d>";
       action = ''"_dd'';
+    }
+
+    {
+      desc = "Diagnostics [fzf]";
+      mode = "n";
+      key = "<leader>fd";
+      action = "<cmd>FzfLua lsp_document_diagnostics<CR>";
+    }
+    {
+      desc = "Find files [fzf]";
+      mode = "n";
+      key = "<leader>ff";
+      action = "<cmd>FzfLua files<CR>";
+    }
+    {
+      desc = "Live grep [fzf]";
+      mode = "n";
+      key = "<leader>fg";
+      action = "<cmd>FzfLua live_grep<CR>";
+    }
+    {
+      desc = "LSP Implementations [fzf]";
+      mode = "n";
+      key = "<leader>fi";
+      action = "<cmd>FzfLua lsp_implementations<CR>";
+    }
+    {
+      desc = "LSP References [fzf]";
+      mode = "n";
+      key = "<leader>fr";
+      action = "<cmd>FzfLua lsp_references<CR>";
+    }
+    {
+      desc = "Builtin [fzf]";
+      mode = "n";
+      key = "<leader>fb";
+      action = "<cmd>FzfLua builtin<CR>";
     }
   ];
 }

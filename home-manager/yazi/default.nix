@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   stylix.targets.yazi.colors.enable = false;
@@ -19,6 +19,12 @@
           }
         ];
       };
+    };
+
+    plugins = with pkgs.yaziPlugins; {
+      inherit mount;
+      inherit (pkgs.nur.repos.Vortriz.yaziPlugins) gvfs;
+      inherit (pkgs.nur.repos.xyenon.yaziPlugins) exifaudio;
     };
   };
 }

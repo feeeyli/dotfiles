@@ -78,6 +78,7 @@
       searchCase = "smart";
 
       ui.borders.enable = true;
+      ui.borders.plugins.nvim-cmp.enable = true;
 
       undoFile.enable = true;
       withNodeJs = true;

@@ -66,6 +66,8 @@
       ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
 
       eval "$(oh-my-posh init zsh --config ~/dotfiles/home-manager/zsh/oh-my-posh.toml)"
+
+      source <(fzf --zsh)
     '';
   };
 }

@@ -2,12 +2,14 @@
 
 {
   imports = [
-    inputs.niri-flake.homeModules.config
+    inputs.niri-flake.homeModules.niri
     ./binds.nix
     ./rules.nix
   ];
 
   programs.niri = {
+    enable = true;
+
     settings = {
       hotkey-overlay.skip-at-startup = true;
 
@@ -31,6 +33,8 @@
 
         preset-column-widths = [
           { proportion = 1.0; }
+          { proportion = 0.7; }
+          { proportion = 0.3; }
         ];
 
         default-column-width.proportion = 1.0;

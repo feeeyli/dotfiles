@@ -113,6 +113,7 @@
     slurp
     wget
     wl-clipboard
+    libnotify
   ];
 
   system.stateVersion = "25.05";

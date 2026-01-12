@@ -577,6 +577,77 @@ in
     Red.fg = "#ed333b";
     StatusLine.bg = "none";
 
+    Pmenu = {
+      bg = "none";
+      fg = color "04";
+    };
+    PmenuSel = {
+      bg = color "01";
+      bold = true;
+    };
+    PmenuMatch = {
+      fg = neutral_fg;
+      bold = true;
+    };
+    PmenuMatchSel = {
+      bold = true;
+    };
+    PmenuSbar.bg = color "01";
+    PmenuThumb.bg = color "02";
+    PmenuExtra.fg = color "02";
+    PmenuExtraSel = {
+      bg = color "01";
+      fg = color "02";
+      bold = true;
+    };
+
+    BlinkCmpLabel.fg = color "04";
+    BlinkCmpLabelDeprecated = {
+      fg = color "02";
+      strikethrough = true;
+    };
+    BlinkCmpKind.fg = color "0D";
+    BlinkCmpMenu.link = "Pmenu";
+    BlinkCmpDoc.link = "NormalFloat";
+    BlinkCmpLabelMatch.link = "PmenuMatch";
+    BlinkCmpMenuSelection = {
+      bg = color "01";
+      bold = true;
+    };
+    BlinkCmpScrollBarGutter.bg = color "01";
+    BlinkCmpScrollBarThumb.bg = color "02";
+    BlinkCmpLabelDescription.link = "PmenuExtra";
+    BlinkCmpLabelDetail.link = "PmenuExtra";
+    BlinkCmpSignatureHelpBorder.link = "FloatBorder";
+    BlinkCmpMenuBorder.link = "FloatBorder";
+    BlinkCmpDocBorder.link = "FloatBorder";
+
+    BlinkCmpKindText.fg = color "0B";
+    BlinkCmpKindMethod.fg = method_fg;
+    BlinkCmpKindFunction.fg = function_fg;
+    BlinkCmpKindConstructor.fg = class_fg;
+    BlinkCmpKindField.fg = property_fg;
+    BlinkCmpKindVariable.fg = variable_fg;
+    BlinkCmpKindClass.fg = class_fg;
+    BlinkCmpKindInterface.fg = type_fg;
+    BlinkCmpKindModule.fg = variable_fg;
+    BlinkCmpKindProperty.fg = property_fg;
+    BlinkCmpKindUnit.fg = value_fg;
+    BlinkCmpKindValue.fg = value_fg;
+    BlinkCmpKindEnum.fg = type_fg;
+    BlinkCmpKindKeyword.fg = comment_fg;
+    BlinkCmpKindSnippet.fg = variable_fg;
+    BlinkCmpKindColor.fg = comment_fg;
+    BlinkCmpKindFile.fg = value_fg;
+    BlinkCmpKindReference.fg = value_fg;
+    BlinkCmpKindFolder.fg = value_fg;
+    BlinkCmpKindEnumMember.fg = type_fg;
+    BlinkCmpKindConstant.fg = value_fg;
+    BlinkCmpKindStruct.fg = type_fg;
+    BlinkCmpKindEvent.fg = function_fg;
+    BlinkCmpKindOperator.fg = value_fg;
+    BlinkCmpKindTypeParameter.fg = type_fg;
+
     # YaziBufferHovered.bg = "none";
     # YaziBufferHoveredInSameDirectory.bg = "none";
   };
