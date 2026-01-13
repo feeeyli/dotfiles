@@ -2,23 +2,23 @@
 
 {
   imports = [
-    ./kitty
-    ./zsh
-    ./dunst
-    ./rofi
-    ./firefox
-    ./obsidian
-    ./xdg
-    ./quickshell
-    ./cava
-    ./yazi
-    ./nvim
+    ./fuzzel
+    ./hyprland
     ./niri
-    ./fastfetch
-    ./distrobox
+    ./nvim
+    ./quickshell
     ./tofi
+    ./xdg
+    ./zsh
     ./qutebrowser
     ./rmpc
+
+    ./distrobox.nix
+    ./dunst.nix
+    ./fastfetch.nix
+    ./firefox.nix
+    ./kitty.nix
+    ./yazi.nix
   ];
 
   home = {
@@ -41,6 +41,8 @@
       wine
       xwayland-satellite
       fd
+      jdk21_headless
+      jq
 
       # pkgs-unstable.jetbrains.idea
     ];
@@ -64,9 +66,9 @@
         enable = true;
       };
     };
-    mpv = {
-      enable = true;
-    };
+
+    mpv.enable = true;
+
     direnv = {
       enable = true;
       nix-direnv.enable = true;
@@ -105,14 +107,8 @@
       };
       config.theme = lib.mkForce "catppuccin";
     };
+    cava.enable = true;
   };
-
-  # gtk = {
-  #   enable = true;
-  #   iconTheme = {
-  #     name = "besgnulinux-mono-red";
-  #   };
-  # };
 
   home.stateVersion = "25.05";
 }

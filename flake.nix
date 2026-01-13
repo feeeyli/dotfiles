@@ -95,6 +95,7 @@
               extraSpecialArgs = {
                 inherit inputs;
                 inherit pkgs-unstable;
+                inherit self;
               };
 
               users.feyli = import ./home-manager/home.nix;

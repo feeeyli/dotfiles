@@ -94,6 +94,7 @@
       clean.extraArgs = "--keep 3";
       flake = "/home/feyli/dotfiles";
     };
+    localsend.enable = true;
   };
 
   environment.systemPackages = with pkgs; [

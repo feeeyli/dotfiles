@@ -1,0 +1,39 @@
+38c38
+<   debug: false,
+---
+>   debug: true,
+46c46
+<   hideComments: false,
+---
+>   hideComments: true,
+52,53c52,53
+<   hideMixes: false,
+<   hideMoviesAndTV: false,
+---
+>   hideMixes: true,
+>   hideMoviesAndTV: true,
+62,63c62,63
+<   hideVoiceSearch: false,
+<   hideWatched: true,
+---
+>   hideVoiceSearch: true,
+>   hideWatched: false,
+69c69
+<   alwaysUseTheaterMode: false,
+---
+>   alwaysUseTheaterMode: true,
+71,72c71,72
+<   fullSizeTheaterMode: false,
+<   hideChat: false,
+---
+>   fullSizeTheaterMode: true,
+>   hideChat: true,
+74c74
+<   hideEndVideos: true,
+---
+>   hideEndVideos: false,
+3054c3054
+< //#endregion
+\ Nenhum caractere de nova linha no final do arquivo
+---
+> //#endregion

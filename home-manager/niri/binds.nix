@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, self, ... }:
 
 {
   programs.niri.settings.binds = with config.lib.niri.actions; {
@@ -8,11 +8,20 @@
     };
     "Mod+Space" = {
       repeat = false;
-      action = spawn-sh "rofi -show drun";
+      action = spawn "fuzzel";
     };
     "Mod+E" = {
       repeat = false;
       action = spawn "yazi";
+    };
+
+    "Mod+P" = {
+      repeat = false;
+      action.spawn = "~/dotfiles/home-manager/fuzzel/scripts/music-control.sh";
+    };
+    "Mod+N" = {
+      repeat = false;
+      action.spawn = "~/dotfiles/home-manager/fuzzel/scripts/notes.sh";
     };
 
     "Mod+O" = {

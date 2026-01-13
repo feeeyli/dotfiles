@@ -54,7 +54,7 @@
         { sh = ''amixer -c 1 sset "Auto-Mute Mode" Disabled & amixer -c 1 sset Front unmute''; }
         { sh = ''mpvpaper -o "--panscan=1 --window-maximized=yes --loop-file" all ~/wallpaper.mp4''; }
         { argv = [ "qs" ]; }
-        { argv = [ "firefox" ]; }
+        { argv = [ "qutebrowser" ]; }
       ];
 
       prefer-no-csd = true;
