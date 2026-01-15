@@ -15,7 +15,7 @@
       action = spawn "yazi";
     };
 
-    "Mod+P" = {
+    "Mod+M" = {
       repeat = false;
       action.spawn = "~/dotfiles/home-manager/fuzzel/scripts/music-control.sh";
     };

@@ -20,7 +20,7 @@ force-play() {
 }
 
 main() {
-  local OPTIONS=" Play\n Pause\n Anterior\n Proxima\n󰲸 Tocar a Seguir\n Forçar"
+  local OPTIONS=" Play\n Pause\n Anterior\n Proxima\n󰲸 Tocar a Seguir\n Forçar\n󰎄 Abrir Player\n Desmutar"
   local choice
 
   choice=$(echo -e "$OPTIONS" | fuzzel -d -l 5 -w 16)
@@ -39,6 +39,11 @@ main() {
   *Recomeçar) rmpc seek 0 ;;
   *Tocar*) add-to-queue ;;
   *Forçar) force-play ;;
+  *Player) kitty -e rmpc ;;
+  *Desmutar)
+    amixer -c 1 sset "Auto-Mute Mode" Disabled
+    amixer -c 1 sset Front unmute
+    ;;
   esac
 
 }

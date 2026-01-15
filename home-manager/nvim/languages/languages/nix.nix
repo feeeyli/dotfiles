@@ -7,6 +7,7 @@
     format.type = [ "nixfmt" ];
     lsp = {
       enable = true;
+      servers = [ "nixd" ];
     };
   };
 }

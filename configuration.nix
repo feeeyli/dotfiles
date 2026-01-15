@@ -12,6 +12,8 @@
     "flakes"
   ];
 
+  nix.nixPath = [ "nixpkgs=${pkgs.path}" ];
+
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
@@ -115,6 +117,7 @@
     wget
     wl-clipboard
     libnotify
+    nixd
   ];
 
   system.stateVersion = "25.05";

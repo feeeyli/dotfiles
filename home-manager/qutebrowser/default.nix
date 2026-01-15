@@ -11,12 +11,16 @@ let
 
   background = color "00";
   foreground = color "07";
+  red = "#D20D1B";
+
+  boldFont = "Bold 12px default_family";
 in
 {
   stylix.targets.qutebrowser.enable = false;
 
   programs.qutebrowser = {
     enable = true;
+    enableDefaultBindings = false;
 
     keyBindings = {
       normal = {
@@ -24,11 +28,106 @@ in
         "<Shift-Right>" = "forward";
         "<Shift-Up>" = "tab-next";
         "<Shift-Down>" = "tab-prev";
+
+        "+" = "zoom-in";
+        "-" = "zoom-out";
+        "0" = "zoom";
+
+        "f" = "hint";
+        "F" = "hint all tab";
+        "I" = "hint inputs";
+
+        "<Alt-m>" = "tab-mute";
+        "gg" = "scroll-to-perc 0";
+        "ge" = "scroll-to-perc";
+        "i" = "mode-enter insert";
+        "n" = "search-next";
+        "N" = "search-prev";
+
+        "<Escape>" = "clear-keychain ;; search ;; fullscreen --leave";
+        "R" = "reload -f";
+        "r" = "reload";
+        "d" = "tab-close";
+
+        "/" = "cmd-set-text /";
+        ":" = "cmd-set-text :";
+        "o" = "cmd-set-text -s :open";
+        "W" = "cmd-set-text -s :open -w";
+        "O" = "cmd-set-text -s :open -t";
+        "e" = "cmd-set-text :open {url:query}";
+        "E" = "cmd-set-text :open {url:pretty}";
+
+        "u" = "undo";
+
+        "P" = "tab-pin";
+      };
+      insert = {
+        "<Escape>" = "mode-leave";
+      };
+      hint = {
+        "<Escape>" = "mode-leave";
+        "<Return>" = "hint-follow";
+      };
+      command = {
+        "<Alt-Backspace>" = "rl-backward-kill-word";
+        "<Down>" = "completion-item-focus --history next";
+        "<Up>" = "completion-item-focus --history prev";
+        "<Escape>" = "mode-leave";
+        "<Return>" = "command-accept";
+        "<Tab>" = "completion-item-focus next";
+      };
+      prompt = {
+        "<Alt-B>" = "rl-backward-word";
+        "<Alt-Backspace>" = "rl-backward-kill-word";
+        "<Alt-D>" = "rl-kill-word";
+        "<Alt-E>" = "prompt-fileselect-external";
+        "<Alt-F>" = "rl-forward-word";
+        "<Alt-Shift-Y>" = "prompt-yank --sel";
+        "<Alt-Y>" = "prompt-yank";
+        "<Ctrl-?>" = "rl-delete-char";
+        "<Ctrl-A>" = "rl-beginning-of-line";
+        "<Ctrl-B>" = "rl-backward-char";
+        "<Ctrl-E>" = "rl-end-of-line";
+        "<Ctrl-F>" = "rl-forward-char";
+        "<Ctrl-H>" = "rl-backward-delete-char";
+        "<Ctrl-K>" = "rl-kill-line";
+        "<Ctrl-P>" = "prompt-open-download --pdfjs";
+        "<Ctrl-Shift-W>" = "rl-filename-rubout";
+        "<Ctrl-U>" = "rl-unix-line-discard";
+        "<Ctrl-W>" = "rl-rubout ' '";
+        "<Ctrl-X>" = "prompt-open-download";
+        "<Ctrl-Y>" = "rl-yank";
+        "<Down>" = "prompt-item-focus next";
+        "<Escape>" = "mode-leave";
+        "<Return>" = "prompt-accept";
+        "<Shift-Tab>" = "prompt-item-focus prev";
+        "<Tab>" = "prompt-item-focus next";
+        "<Up>" = "prompt-item-focus prev";
+      };
+      yesno = {
+        "<Alt-Shift-Y>" = "prompt-yank --sel";
+        "<Alt-Y>" = "prompt-yank";
+        "<Escape>" = "mode-leave";
+        "<Return>" = "prompt-accept";
+        "N" = "prompt-accept --save no";
+        "Y" = "prompt-accept --save yes";
+        "n" = "prompt-accept no";
+        "y" = "prompt-accept yes";
       };
     };
 
     settings = {
-      fonts.default_family = "JetBrainsMono Nerd Font Mono SemiBold";
+      fonts = {
+        default_family = "monospace";
+        default_size = "12px";
+
+        tabs.selected = boldFont;
+        tabs.unselected = boldFont;
+        statusbar = boldFont;
+      };
+
+      tabs = {
+      };
 
       hints = {
         border = "0px";
@@ -42,6 +141,7 @@ in
           "search_match"
           "url"
           "history"
+          "progress"
         ];
       };
 
@@ -80,11 +180,11 @@ in
           };
           selected = {
             odd = {
-              bg = color "08";
+              bg = red;
               fg = foreground;
             };
             even = {
-              bg = color "08";
+              bg = red;
               fg = foreground;
             };
           };
@@ -96,7 +196,7 @@ in
         };
 
         hints = {
-          bg = color "08";
+          bg = red;
           fg = foreground;
           match.fg = color "0B";
         };
@@ -123,11 +223,11 @@ in
           match.fg = color "0C";
 
           item.selected = {
-            bg = color "08";
+            bg = red;
 
             border = {
-              top = color "08";
-              bottom = color "08";
+              top = red;
+              bottom = red;
             };
 
             fg = color "07";
@@ -165,13 +265,13 @@ in
             fg = color "00";
           };
 
-          progress.bg = color "08";
+          progress.bg = red;
 
           url = {
             fg = foreground;
             hover.fg = color "0E";
-            success.http.fg = color "08";
-            success.https.fg = color "08";
+            success.http.fg = red;
+            success.https.fg = red;
             warn.fg = color "0A";
             error.fg = color "09";
           };
@@ -201,25 +301,22 @@ in
     };
 
     greasemonkey = [
-      (pkgs.fetchurl {
-        url = "https://update.greasyfork.org/scripts/387773/Control%20Panel%20for%20Twitter.user.js";
-        sha256 = "sha256-/oEznOH09JIy3Z+lIpizlXw6xRwQ3lb8sGwxvhEJPmo=";
-        postFetch = ''
-          patch -Np1 $out ${self}/home-manager/qutebrowser/scripts/patches/control-panel-for-twitter.patch
-        '';
-      })
-      (pkgs.fetchurl {
-        url = "https://update.greasyfork.org/scripts/488224/Control%20Panel%20for%20YouTube.user.js";
-        sha256 = "sha256-67YxR4SrDIJhJ2JEAnki6720sdMoETrNrghDzFoPLyg=";
-        postFetch = ''
-          patch -Np1 $out ${self}/home-manager/qutebrowser/scripts/patches/control-panel-for-youtube.patch
-        '';
-      })
+      # (pkgs.writeTextFile {
+      #   name = "improved-twitter.js";
+      #   text = builtins.readFile ./scripts/
+      # })
+      # (pkgs.fetchurl {
+      #   url = "https://update.greasyfork.org/scripts/488224/Control%20Panel%20for%20YouTube.user.js";
+      #   sha256 = "sha256-67YxR4SrDIJhJ2JEAnki6720sdMoETrNrghDzFoPLyg=";
+      #   postFetch = ''
+      #     patch -Np1 $out ${self}/home-manager/qutebrowser/scripts/patches/control-panel-for-youtube.patch
+      #   '';
+      # })
     ];
 
     extraConfig = ''
-      c.statusbar.padding = { "top": 2, "bottom": 2, "left": 8, "right": 8 }
-      c.tabs.padding = { "top": 2, "bottom": 2, "left": 8, "right": 8 }
+      c.statusbar.padding = { "top": 4, "bottom": 4, "left": 6, "right": 6 }
+      c.tabs.padding = { "top": 6, "bottom": 6, "left": 8, "right": 8 }
 
       config.set("content.headers.user_agent", "Mozilla/5.0 ({os_info}; rv:135.0) Gecko/20100101 Firefox/135", "https://accounts.google.com/*")
     '';
