@@ -1,12 +1,7 @@
-{
-  config,
-  pkgs,
-  self,
-  ...
-}:
+{ ... }:
 
 let
-  colors = config.programs.nvf.settings.vim.theme.base16-colors;
+  colors = import ../themes/nvim.nix;
   color = hx: colors."base${hx}";
 
   background = color "00";

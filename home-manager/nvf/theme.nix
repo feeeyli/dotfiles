@@ -1,14 +1,6 @@
 { config, ... }:
 
 let
-  # base08 = "#ff5555";
-  # base09 = "#ffb86c";
-  # base0A = "#f1fa8c";
-  # base0B = "#50fa7b";
-  # base0C = "#8be9fd";
-  # base0D = "#80bfff";
-  # base0E = "#ff79c6";
-  # base0F = "#bd93f9";
   colors = config.programs.nvf.settings.vim.theme.base16-colors;
   color = hx: colors."base${hx}";
 
@@ -535,8 +527,8 @@ in
     }; # 'this' as parameter
 
     # Angular/React component handling
-    "@lsp.type.component".fg = neutral_fg; # Angular/React components
-    "@lsp.type.customElement".fg = neutral_fg; # Web components
+    "@lsp.type.component".fg = tag_fg; # Angular/React components
+    "@lsp.type.customElement".fg = tag_fg; # Web components
 
     "@lsp.mod.deprecated".strikethrough = true;
     "@lsp.mod.readonly".italic = true;

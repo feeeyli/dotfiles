@@ -5,7 +5,7 @@
     ./fuzzel
     ./hyprland
     ./niri
-    ./nvim
+    ./nixvim
     ./quickshell
     ./tofi
     ./xdg
@@ -43,8 +43,9 @@
       fd
       jdk21_headless
       jq
-
-      # pkgs-unstable.jetbrains.idea
+      ripgrep
+      nixfmt
+      delta
     ];
 
     shell.enableZshIntegration = true;

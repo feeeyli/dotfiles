@@ -1,5 +1,8 @@
 { lib, ... }:
 
+let
+  theme = import ./themes/kitty.nix;
+in
 {
   # stylix.targets.kitty.enable = false;
   stylix.targets.kitty.colors.enable = false;
@@ -11,34 +14,40 @@
       cursor_shape = "beam";
       window_margin_width = "6 12";
       allow_remote_control = true;
+      listen_on = "unix:/tmp/mykitty";
+      window_border_width = 0;
+
+      cursor_trail = 3;
+      cursor_trail_start_threshold = 0;
+      cursor_trail_decay = "0.2 0.4";
 
       background_opacity = lib.mkForce "0.8";
       background = "#000000";
       foreground = "#fffaf8";
 
-      color0 = "#1d1d1d";
-      color7 = "#deddda";
+      inherit (theme) color0;
+      inherit (theme) color7;
 
-      color8 = "#9a9996";
-      color15 = "#f6f5f4";
+      inherit (theme) color8;
+      inherit (theme) color15;
 
-      color1 = "#D20D1B";
-      color9 = "#ed333b";
+      inherit (theme) color1;
+      inherit (theme) color9;
 
-      color2 = "#50fa7b";
-      color10 = "#69ff94";
+      inherit (theme) color2;
+      inherit (theme) color10;
 
-      color3 = "#f1fa8c";
-      color11 = "#ffffa5";
+      inherit (theme) color3;
+      inherit (theme) color11;
 
-      color4 = "#bd93f9";
-      color12 = "#d6acff";
+      inherit (theme) color4;
+      inherit (theme) color12;
 
-      color5 = "#ff79c6";
-      color13 = "#ff92df";
+      inherit (theme) color5;
+      inherit (theme) color13;
 
-      color6 = "#8be9fd";
-      color14 = "#a4ffff";
+      inherit (theme) color6;
+      inherit (theme) color14;
     };
   };
 }

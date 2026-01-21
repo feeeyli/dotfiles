@@ -21,7 +21,6 @@
     #"im.riot.Riot"
 
     "org.vinegarhq.Sober"
-    "rocks.shy.VacuumTube"
   ];
 
 }

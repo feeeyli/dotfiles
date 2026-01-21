@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   stylix.targets.yazi.colors.enable = false;
@@ -14,7 +14,7 @@
       opener = {
         edit = [
           {
-            run = "${config.programs.helix.package}/bin/hx $@";
+            run = "${pkgs.neovim-unwrapped}/bin/nvim $@";
             block = true;
           }
         ];
@@ -25,6 +25,15 @@
       inherit mount;
       inherit (pkgs.nur.repos.Vortriz.yaziPlugins) gvfs;
       inherit (pkgs.nur.repos.xyenon.yaziPlugins) exifaudio;
+    };
+
+    theme = {
+      indicator = {
+        padding = { 
+          close = "█";
+          open = "█";
+        };
+      };
     };
   };
 }

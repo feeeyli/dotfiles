@@ -41,6 +41,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixvim = {
+      url = "github:nix-community/nixvim";
+    };
+
     niri-flake = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -87,6 +91,7 @@
           ./modules/stylix.nix
 
           home-manager.nixosModules.home-manager
+          inputs.nixvim.nixosModules.nixvim
           {
             home-manager = {
               useGlobalPkgs = true;

@@ -5,11 +5,16 @@ add-to-queue() {
   local choice
   local file
 
-  musics=$(rmpc queue | jq 'map("\(.metadata.artist) - \(.metadata.title) - \(.metadata.album)::\(.file)") | join("\n")' -r | sort | uniq)
+  musics=$(rmpc listall | sort)
 
-  choice=$(echo -e "$musics" | awk -F:: '{print $1}' | fuzzel -d -w 75 -p "Escolha uma musica  " --match-mode=exact --hide-before-typing)
+  echo "AAA"
 
-  file=$(echo -e "$musics" | awk -F:: -v name="$choice" '$1==name {print $NF}')
+  choice=$(echo -e "$musics" | awk -F "/" '{printf $NF"\n"}' | fuzzel -d -w 75 -p "Escolha uma musica  " --match-mode=exact --hide-before-typing)
+
+  file=$(echo -e "$musics" | awk -F "/" -v name="$choice" '$NF==name {print $0}')
+  # choice=$(echo -e "$musics" | awk -F "/" '{gsub(/(\.mp3)|(\.m4a)|(\.flac)/, "")} {printf $NF"\n"}' | fuzzel -d -w 75 -p "Escolha uma musica  " --match-mode=exact --hide-before-typing)
+  #
+  # file=$(echo -e "$musics" | awk -F "/" -v name="$choice.mp3" '$NF==name {print $0}')
 
   rmpc add -p +0 "$HOME/music/$file"
 }
@@ -20,10 +25,19 @@ force-play() {
 }
 
 main() {
-  local OPTIONS=" Play\n Pause\n Anterior\n Proxima\n󰲸 Tocar a Seguir\n Forçar\n󰎄 Abrir Player\n Desmutar"
+  local options
+  local state=$(rmpc status | jq '.state' -r)
+
+  if [[ $state = "Play" ]]; then
+    options+=" Pause"
+  else
+    options+=" Play"
+  fi
+
+  options+="\n Anterior\n Proxima\n󰲸 Tocar a Seguir\n Forçar\n󰎄 Abrir Player\n Desmutar"
   local choice
 
-  choice=$(echo -e "$OPTIONS" | fuzzel -d -l 5 -w 16)
+  choice=$(echo -e "$options" | fuzzel -d -l 4 -w 16)
 
   case $choice in
   *Play) rmpc unpause ;;

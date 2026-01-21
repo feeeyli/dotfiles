@@ -36,7 +36,20 @@
                             (
                               size: "1",
                               pane: Pane(Property(content: [
-                                ( kind: Property(Song(Title)), style: (fg: "red", modifiers: "Bold") )
+                                ( kind: Property(
+                                  Status(StateV2(
+                                    playing_label: " ",
+                                    paused_label: " ",
+                                    stopped_label: " ",
+                                    playing_style: (fg: "red"),
+                                    paused_style: (fg: "red"),
+                                    stopped_style: (fg: "red")
+                                    )))),
+                                ( kind: Property( Song( Title ) ), style: ( fg: "red", modifiers: "Bold" ) ),
+                                ( kind: Property( Status( RepeatV2( on_label: "󰑖", off_label: "", on_style: ( fg: "red" ), on_off: ( fg: "red" ) ) ) ) ),
+                                ( kind: Property( Status( SingleV2( on_label: "󰑘", off_label: "", oneshot_label: "", on_style: ( fg: "red" ), on_off: ( fg: "red" ), oneshot_style: ( fg: "yellow" ) ) ) ) ),
+                                ( kind: Property( Status( SingleV2( on_label: "", off_label: "", on_style: ( fg: "red" ), on_off: ( fg: "red" ) ) ) ) ),
+                                ( kind: Property( Status( ConsumeV2( on_label: "C", off_label: "", oneshot_label: "", on_style: ( fg: "red" ), on_off: ( fg: "red" ), oneshot_style: ( fg: "yellow" ) ) ) ) ),
                               ], align: Center))
                             ),
                             (

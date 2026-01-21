@@ -1,4 +1,4 @@
-{ ... }:
+{ self, ... }:
 
 {
   programs.zsh = {
@@ -31,7 +31,7 @@
 
       nodeflake = "cp ~/www/example_node_flake.nix flake.nix";
 
-      nvim = "~/dotfiles/home-manager/nvim/knvim.sh";
+      # nvim = "~/dotfiles/scripts/knvim.sh";
     };
     envExtra = ''
       export NVM_DIR="$HOME/.nvm"
