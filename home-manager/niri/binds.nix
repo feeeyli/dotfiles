@@ -23,6 +23,10 @@
       repeat = false;
       action.spawn = "~/dotfiles/home-manager/fuzzel/scripts/notes.sh";
     };
+    "Mod+U" = {
+      repeat = false;
+      action.spawn = "~/dotfiles/home-manager/fuzzel/scripts/menu.sh";
+    };
 
     "Mod+O" = {
       repeat = false;

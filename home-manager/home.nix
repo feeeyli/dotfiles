@@ -12,6 +12,8 @@
     ./zsh
     ./qutebrowser
     ./rmpc
+    ./nixcraft
+    # ./matugen
 
     ./distrobox.nix
     ./dunst.nix
@@ -46,6 +48,7 @@
       ripgrep
       nixfmt
       delta
+      calcure
     ];
 
     shell.enableZshIntegration = true;

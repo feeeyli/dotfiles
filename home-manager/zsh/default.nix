@@ -61,9 +61,9 @@
       #
       export PATH="$PATH:$HOME/.cargo/bin"
 
-      [[ "$(tty)" == /dev/tty1 ]] && niri
+      # [[ "$(tty)" == /dev/tty1 ]] && niri
 
-      ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
+      ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#838085'
 
       eval "$(oh-my-posh init zsh --config ~/dotfiles/home-manager/zsh/oh-my-posh.toml)"
 

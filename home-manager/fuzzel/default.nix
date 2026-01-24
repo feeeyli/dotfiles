@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  stylix.targets.fuzzel.enable = false;
+  # stylix.targets.fuzzel.enable = false;
 
   programs.fuzzel = {
     enable = true;
@@ -12,10 +12,14 @@
         prompt = "' '";
         icons-enabled = false;
         enable-mouse = false;
-        font = "monospace:weight=bold:size=12";
+        font = "monospace:weight=bold:size=11";
 
         horizontal-pad = 12;
         vertical-pad = 12;
+
+        anchor = "top";
+        y-margin = 6;
+        x-margin = 6;
       };
 
       colors = {

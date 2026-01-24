@@ -42,7 +42,8 @@ PanelWindow {
 
             GradientMouseArea {
                 onClicked: {
-                    ThemeManager.cycleThemes();
+                    // ThemeManager.cycleThemes();
+                    Quickshell.execDetached(["fuzzel", "-a", "top-left"]);
                 }
             }
         }
@@ -61,10 +62,11 @@ PanelWindow {
                 size: 24
             }
 
-            // onClicked: {
-            //     ThemeManager.cycleThemes();
-            // }
-            GradientMouseArea {}
+            GradientMouseArea {
+                onClicked: {
+                    Quickshell.execDetached(["sh", "-c", "~/dotfiles/home-manager/fuzzel/scripts/menu.sh"]);
+                }
+            }
         }
 
         RowLayout {
@@ -80,12 +82,10 @@ PanelWindow {
             Volume {
                 id: volume
 
-                VolumePercent {
-                    id: volumePercent
-                }
-
                 GradientMouseArea {
-                    onClicked: volumePercent.toggleOpen()
+                    onClicked: {
+                        Quickshell.execDetached(["kitty", "-e", "alsamixer", "-c", "1"]);
+                    }
                     onWheel: function (wheel) {
                         if (wheel.angleDelta.y > 0) {
                             AudioService.increaseVolume();

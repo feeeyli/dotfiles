@@ -1,7 +1,7 @@
 { ... }:
 
 {
-  stylix.targets.tofi.enable = false;
+  # stylix.targets.tofi.enable = false;
 
   programs.tofi = {
     enable = true;

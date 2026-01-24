@@ -54,6 +54,15 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixcraft = {
+      url = "github:loystonpais/nixcraft";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    matugen = {
+      url = "github:/InioX/Matugen";
+    };
   };
 
   outputs =

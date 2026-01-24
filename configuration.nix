@@ -1,9 +1,10 @@
 { pkgs, ... }:
 {
-  # imports = [
-  #   ./hardware-configuration.nix
-  #   ./modules/stylix.nix
-  # ];
+  imports = [
+    ./modules/boot.nix
+    ./modules/getty.nix
+    ./modules/fonts.nix
+  ];
 
   security.polkit.enable = true;
 
@@ -13,11 +14,6 @@
   ];
 
   nix.nixPath = [ "nixpkgs=${pkgs.path}" ];
-
-  boot = {
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
-  };
 
   time.timeZone = "America/Sao_Paulo";
 
@@ -46,6 +42,7 @@
       "networkmanager"
       "wheel"
       "docker"
+      "seat"
     ];
     packages = [ ];
     shell = pkgs.zsh;
@@ -57,12 +54,16 @@
       variant = "";
     };
 
-    getty.autologinUser = "feyli";
-
     gvfs.enable = true;
     udisks2.enable = true;
 
     flatpak.enable = true;
+
+    pipewire = {
+      enable = true;
+
+      wireplumber.enable = true;
+    };
   };
 
   networking = {

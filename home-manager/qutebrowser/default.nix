@@ -11,7 +11,7 @@ let
   boldFont = "Bold 12px default_family";
 in
 {
-  stylix.targets.qutebrowser.enable = false;
+  # stylix.targets.qutebrowser.enable = false;
 
   programs.qutebrowser = {
     enable = true;

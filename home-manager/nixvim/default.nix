@@ -5,7 +5,7 @@
     inputs.nixvim.homeModules.nixvim
   ];
 
-  stylix.targets.nixvim.enable = false;
+  # stylix.targets.nixvim.enable = false;
 
   home.file.".config/nvim/cheatsheet.txt".source = ./cheatsheet.txt;
 

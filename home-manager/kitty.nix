@@ -5,7 +5,7 @@ let
 in
 {
   # stylix.targets.kitty.enable = false;
-  stylix.targets.kitty.colors.enable = false;
+  # stylix.targets.kitty.colors.enable = false;
 
   programs.kitty = {
     enable = true;

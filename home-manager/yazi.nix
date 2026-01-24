@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  stylix.targets.yazi.colors.enable = false;
+  # stylix.targets.yazi.colors.enable = false;
 
   programs.yazi = {
     enable = true;
@@ -29,7 +29,7 @@
 
     theme = {
       indicator = {
-        padding = { 
+        padding = {
           close = "█";
           open = "█";
         };

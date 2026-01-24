@@ -13,5 +13,6 @@
     ./ts_ls.nix
     # ./vtsls.nix
     ./vue_ls.nix
+    ./ron-lsp.nix
   ];
 }

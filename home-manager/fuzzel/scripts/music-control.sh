@@ -4,12 +4,12 @@ add-to-queue() {
   local musics
   local choice
   local file
+  local actual_song
 
+  actual_song=$(rmpc song | jq '.metadata.title' -r)
   musics=$(rmpc listall | sort)
 
-  echo "AAA"
-
-  choice=$(echo -e "$musics" | awk -F "/" '{printf $NF"\n"}' | fuzzel -d -w 75 -p "Escolha uma musica  " --match-mode=exact --hide-before-typing)
+  choice=$(echo -e "$musics" | awk -F "/" '{printf $NF"\n"}' | fuzzel -d -w 75 -p "Escolha uma musica  " --match-mode=exact --hide-before-typing --placeholder "$actual_song")
 
   file=$(echo -e "$musics" | awk -F "/" -v name="$choice" '$NF==name {print $0}')
   # choice=$(echo -e "$musics" | awk -F "/" '{gsub(/(\.mp3)|(\.m4a)|(\.flac)/, "")} {printf $NF"\n"}' | fuzzel -d -w 75 -p "Escolha uma musica  " --match-mode=exact --hide-before-typing)
@@ -26,7 +26,9 @@ force-play() {
 
 main() {
   local options
-  local state=$(rmpc status | jq '.state' -r)
+  local state
+
+  state=$(rmpc status | jq '.state' -r)
 
   if [[ $state = "Play" ]]; then
     options+=" Pause"
