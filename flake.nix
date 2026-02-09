@@ -11,11 +11,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix = {
-      url = "github:nix-community/stylix/release-25.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -54,89 +49,37 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nixcraft = {
-      url = "github:loystonpais/nixcraft";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    matugen = {
-      url = "github:/InioX/Matugen";
-    };
   };
 
   outputs =
     {
       self,
       nixpkgs,
-      home-manager,
-      stylix,
-      nix-flatpak,
       nixpkgs-unstable,
-      quickshell,
-      nur,
+      home-manager,
       ...
     }@inputs:
     let
+      lib = nixpkgs.lib // home-manager.lib;
+
       pkgs-unstable = import nixpkgs-unstable {
         system = "x86_64-linux";
         config.allowUnfree = true;
       };
     in
     {
-
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          nix-flatpak.nixosModules.nix-flatpak
-
-          stylix.nixosModules.stylix
-
-          nur.modules.nixos.default
-
-          ./configuration.nix
-          ./hardware-configuration.nix
-          ./modules/flatpak.nix
-          ./modules/stylix.nix
-
-          home-manager.nixosModules.home-manager
-          inputs.nixvim.nixosModules.nixvim
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-
-              extraSpecialArgs = {
-                inherit inputs;
-                inherit pkgs-unstable;
-                inherit self;
-              };
-
-              users.feyli = import ./home-manager/home.nix;
-
-              backupFileExtension = "hm-backup";
-            };
-          }
-
-          (
-            { pkgs, ... }:
-            {
-              environment.systemPackages = [
-                (quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
-                  withJemalloc = true;
-                  withQtSvg = true;
-                  withWayland = true;
-                  withX11 = false;
-                  withPipewire = true;
-                  withPam = true;
-                  withHyprland = true;
-                  withI3 = false;
-                })
-              ];
-            }
-          )
-        ];
+      inherit lib;
+      nixosConfigurations = {
+        feylin = lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./modules
+            ./machines/feylin
+          ];
+          specialArgs = {
+            inherit self inputs pkgs-unstable;
+          };
+        };
       };
-
     };
 }
